@@ -9,6 +9,11 @@ using PastExamsHub.Base.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using PastExamsHub.Authority.Infrastructure.Identity;
 using PastExamsHub.Base.Domain.Common;
+using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using PastExamsHub.Base.Domain.Enums;
 
 namespace PastExamsHub.Authority.Infrastructure.Services
 {
@@ -52,6 +57,7 @@ namespace PastExamsHub.Authority.Infrastructure.Services
             return user;
         }
 
+
         public async Task<IApplicationUser> FindByEmailAsync(string email)
         {
             var user = await UserManager.FindByEmailAsync(email);
@@ -65,18 +71,91 @@ namespace PastExamsHub.Authority.Infrastructure.Services
 
         public async Task SignInAsync(string email, string password, string returnUri)
         {
-            string returnUrl = new Uri(returnUri).PathAndQuery;
-            var context = await Interaction.GetAuthorizationContextAsync(returnUrl);
-            if (context == null)
-            {
-                var validationFailure = new ValidationFailure(nameof(returnUrl), "Not authorized");
-                throw new Base.Application.Common.Exceptions.ValidationException(validationFailure);
-            }
+            //string returnUrl = new Uri(returnUri).PathAndQuery;
+            //var context = await Interaction.GetAuthorizationContextAsync(returnUrl);
+            //if (context == null)
+            //{
+            //    var validationFailure = new ValidationFailure(nameof(returnUrl), "Not authorized");
+            //    throw new Base.Application.Common.Exceptions.ValidationException(validationFailure);
+            //}
 
             var result = await SignInManager.PasswordSignInAsync(email, password, true, false);
-            result.ThrowOnFailure();
+            if (!result.Succeeded)
+            {
+                var validationFailure = new ValidationFailure("signInValues", "Wrong password or email, please try again!");
+                throw new ValidationException(validationFailure);
+            }
         }
 
+        public async Task<string> GenerateEmailConfirmationTokenAsync(string email)
+        {
+
+            var user = await _FindByEmailAsync(email);
+
+            return await UserManager.GenerateEmailConfirmationTokenAsync(user);
+        }
+
+        public async Task SignUpAsync(string email, string password, string firstName, string lastName,CancellationToken cancellationToken)
+        {
+
+            var user = new IdentityApplicationUser
+            {
+                Email = email,
+                UserName = email,
+                FirstName = firstName,
+                LastName = lastName,
+                Role = RoleType.Student,
+                EmailConfirmed = true
+            };
+
+            
+
+            {
+                var result = await UserManager.CreateAsync(user, password);
+
+                if (!result.Succeeded)
+                {
+                    List<ValidationFailure> validationFailures = WrapServerErrors(result.Errors);
+
+                    throw new ValidationException(validationFailures);
+                }
+
+                result.ThrowOnFailure(); 
+            }
+            
+            {
+                var result = await UserManager.AddToRoleAsync(user, user.Role.ToString());
+
+                if (!result.Succeeded)
+                {
+                    var validationFailure = new ValidationFailure
+                       (
+                       result.Errors.LastOrDefault().Code.ToString(),
+                       result.Errors.LastOrDefault().Description.ToString()
+                       ); //TODO: test/refactor message
+
+                    throw new ValidationException(validationFailure);
+                }
+                //result.ThrowOnFailure(); 
+            }
+        }
+
+
+        public List<ValidationFailure> WrapServerErrors(IEnumerable<IdentityError> errors)
+        {
+            List<ValidationFailure> validationFailures = new List<ValidationFailure>();
+
+            foreach (var error in errors)
+            {
+                validationFailures.Add(new ValidationFailure
+                    (
+                    error.Code.ToString(),
+                    error.Description.ToString()
+                    ));
+            }
+
+            return validationFailures;
+        }
         public async Task<string> SignOutAsync(string logoutId)
         {
             var context = await Interaction.GetLogoutContextAsync(logoutId);

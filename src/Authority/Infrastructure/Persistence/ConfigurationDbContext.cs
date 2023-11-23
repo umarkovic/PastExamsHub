@@ -56,7 +56,7 @@ namespace PastExamsHub.Authority.Infrastructure.Persistence
         private void Seed(ModelBuilder builder)
         {
             var apiScopeName = "api.access";
-            var apiSecret = IdentityServer4.Models.HashExtensions.Sha256("Naissus.Tech#2021");
+            var apiSecret = IdentityServer4.Models.HashExtensions.Sha256("Administrator1!");
 
             int i = 0;
             var openId = new IdentityServer4.Models.IdentityResources.OpenId().ToEntity();

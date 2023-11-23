@@ -11,7 +11,8 @@ namespace PastExamsHub.Base.Domain.Enums
     {
         Unknown = 0,
 
-        Admin,
-        Client
+        Admin = 1,
+        Student = 2,
+        Teacher = 3
     }
 }

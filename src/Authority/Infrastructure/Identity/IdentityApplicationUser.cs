@@ -22,31 +22,8 @@ namespace PastExamsHub.Authority.Infrastructure.Identity
 
         public RoleType Role { get; set; }
 
-        public UserStatusType Status { get; set; } //TODO: keep?
-
-        public DateTime LastActivityDateTimeUtc { get; set; }
-		
-		public DateTime CreatedDateTimeUtc { get; set; }
-		
-        public string CreatedByUserUid { get; set; }
-		
-        public DateTime? LastModifiedDateTimeUtc { get; set; }
-		
-        public string LastModifiedByUserUid { get; set; }
-		
-        public DateTime? DeletedDateTimeUtc { get; set; }
-		
-        public string DeletedByUserUid { get; set; }
-
-        public static IdentityApplicationUser From(IApplicationUser applicationUser)
-        {
-            var user = new IdentityApplicationUser()
-            {
-                EmailConfirmed = true
-            };
-            user.UpdateFrom(applicationUser);
-            return user;
-        }
+      
+     
 
         internal void UpdateFrom(IApplicationUser applicationUser)
         {
@@ -56,15 +33,7 @@ namespace PastExamsHub.Authority.Infrastructure.Identity
             FirstName = applicationUser.FirstName;
             LastName = applicationUser.LastName;
             Role = applicationUser.Role;
-            Status = applicationUser.Status;
-            LastActivityDateTimeUtc = applicationUser.LastActivityDateTimeUtc;
-            LastModifiedByUserUid = applicationUser.LastModifiedByUserUid;
-            LastModifiedDateTimeUtc = applicationUser.LastModifiedDateTimeUtc;
-            CreatedByUserUid = applicationUser.CreatedByUserUid;
-            CreatedDateTimeUtc = applicationUser.CreatedDateTimeUtc;
-            DeletedByUserUid = applicationUser.DeletedByUserUid;
-            DeletedDateTimeUtc = applicationUser.DeletedDateTimeUtc;
-            
+         
 
 
         }

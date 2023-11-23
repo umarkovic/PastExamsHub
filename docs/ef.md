@@ -12,6 +12,7 @@ dotnet ef migrations add Initial --context AuthorityDbContext --output-dir Persi
 dotnet ef migrations add Initial --context PastExamsHub.Authority.Infrastructure.Persistence.ConfigurationDbContext --output-dir Persistence\Migrations\IdentityServer\ConfigurationDb --project src\Authority\Infrastructure\Authority.Infrastructure.csproj --startup-project src\Authority\WebAPI\Authority.WebAPI.csproj
 dotnet ef migrations add Initial --context PastExamsHub.Authority.Infrastructure.Persistence.PersistedGrantDbContext --output-dir Persistence\Migrations\IdentityServer\PersistedGrantDb --project src\Authority\Infrastructure\Authority.Infrastructure.csproj --startup-project src\Authority\WebAPI\Authority.WebAPI.csproj
 
+dotnet ef migrations add Initial2 --context AuthorityDbContext --output-dir Persistence\Migrations\AuthorityDb --project src\Authority\Infrastructure\Authority.Infrastructure.csproj --startup-project src\Authority\WebAPI\Authority.WebAPI.csproj
 dotnet ef migrations add Seed --context PastExamsHub.Authority.Infrastructure.Persistence.ConfigurationDbContext  --output-dir Persistence\Migrations\IdentityServer\ConfigurationDb --project src\Authority\Infrastructure\Authority.Infrastructure.csproj --startup-project src\Authority\WebAPI\Authority.WebAPI.csproj
 dotnet ef migrations add Seed --context AuthorityDbContext --output-dir Persistence\Migrations\AuthorityDb --project src\Authority\Infrastructure\Authority.Infrastructure.csproj --startup-project src\Authority\WebAPI\Authority.WebAPI.csproj
 

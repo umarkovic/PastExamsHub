@@ -58,9 +58,12 @@ namespace PastExamsHub.Authority.Infrastructure.Persistence
         private void Seed(ModelBuilder builder)
         {
             SeedRole(builder, RoleType.Admin);
-            SeedRole(builder, RoleType.Client);            
+            SeedRole(builder, RoleType.Student);
+            SeedRole(builder, RoleType.Teacher);
 
             SeedUser(builder, "Administrator", "System", "administrator@localhost", "Administrator1!", RoleType.Admin);
+            SeedUser(builder, "Uros", "Markovic", "umarkovic864@gmail.com", "Administrator1!", RoleType.Student);
+            SeedUser(builder, "Valentina", "Nejkovic", "valenejkovic@gmail.com", "Administrator1!", RoleType.Teacher);
         }
 
         void SeedRole(ModelBuilder builder, RoleType roleType)
@@ -89,8 +92,7 @@ namespace PastExamsHub.Authority.Infrastructure.Persistence
                 FirstName = firstName,
                 LastName = lastName,
                 Role = roleType,
-                PhoneNumber = "0",//TODO: currently required by Authority.Infrastructure.ProfileService to be put in claims - not really required for portal users
-                Status = UserStatusType.Active
+                PhoneNumber = "0",
             };
             user.PasswordHash = new PasswordHasher<IdentityApplicationUser>().HashPassword(user, adminPassword);
 

@@ -14,6 +14,7 @@ using System;
 using FluentValidation.Results;
 using System.Collections.Generic;
 using FluentValidation;
+using PastExamsHub.Authority.Application.Authentication.Commands.SignUp;
 
 namespace PastExamsHub.Authority.WebAPI.Controllers
 {
@@ -47,6 +48,16 @@ namespace PastExamsHub.Authority.WebAPI.Controllers
             var result = await Mediator.Send(command);
 
             return Ok(result);
+        }
+
+        [HttpPost(nameof(SignUp))]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> SignUp(SignUpCommand command)
+        {
+            await Mediator.Send(command);
+
+            return Ok();
         }
     }
 }

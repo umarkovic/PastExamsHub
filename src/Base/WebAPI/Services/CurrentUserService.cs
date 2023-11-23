@@ -37,8 +37,7 @@ namespace PastExamsHub.Base.WebAPI.Services
                     PhoneNumber = FindClaim(JwtClaimTypes.PhoneNumber),
                     FirstName = FindClaim(JwtClaimTypes.GivenName),
                     LastName = FindClaim(JwtClaimTypes.FamilyName),
-                    Role = this.Role,
-                    Status = UserStatusType.Active
+                    Role = this.Role
                 };
             }
         }
