@@ -8,7 +8,8 @@ namespace PastExamsHub.Core.Enums
     {
         Unknown = 0,
 
-        Coach = 1,
-        Client = 2,
+        Admin = 1,
+        Student = 2,
+        Teacher = 3
     }
 }

@@ -78,6 +78,8 @@ namespace PastExamsHub.Authority.Infrastructure.Services
             //    var validationFailure = new ValidationFailure(nameof(returnUrl), "Not authorized");
             //    throw new Base.Application.Common.Exceptions.ValidationException(validationFailure);
             //}
+            var user = await _FindByEmailAsync(email);
+            var myClaims = await UserManager.GetClaimsAsync(user);
 
             var result = await SignInManager.PasswordSignInAsync(email, password, true, false);
             if (!result.Succeeded)

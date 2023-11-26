@@ -26,6 +26,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="IronOcr.Languages.Serbian" Version="2020.11.2" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="5.0.16" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="5.0.12" />

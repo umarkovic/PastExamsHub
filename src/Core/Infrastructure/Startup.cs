@@ -9,6 +9,9 @@ using Microsoft.Extensions.Hosting;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Base.Infrastructure.Services;
 using PastExamsHub.Core.Infrastructure.Services;
+using PastExamsHub.Base.Infrastructure.Persistence;
+using PastExamsHub.Core.Domain.Entities;
+using PastExamsHub.Core.Infrastructure.Persistence.Repositories;
 
 namespace PastExamsHub.Core.Infrastructure
 {
@@ -35,7 +38,9 @@ namespace PastExamsHub.Core.Infrastructure
             services.AddTransient<IEmailTemplateService, EmailTemplateService>();
             services.AddTransient<IAuthorityService, AuthorityService>();
 
-
+            services.AddScoped<IBaseRepository<User>, BaseRepository<ICoreDbContext, User>>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<ICoursesRepository, CoursesRepository>();
             return services;
         }
     }

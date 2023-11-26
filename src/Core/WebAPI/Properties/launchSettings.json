@@ -17,7 +17,7 @@
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
-    "Template.Core.WebAPI": {
+    "PastExamsHub.Core.WebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "",

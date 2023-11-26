@@ -45,7 +45,6 @@ namespace PastExamsHub.Core.WebAPI
                 //TODO: make common in Base.Startup
             });//.AddMessagePackProtocol();//TODO: consider
 
-            services.AddTransient<IDeviceNotificationService, DeviceNotificationService>();
             services.AddSingleton<IInMemoryConnectionStorage<string>, InMemoryConnectionStorage<string>>();
 
 
