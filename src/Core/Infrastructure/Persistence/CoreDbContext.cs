@@ -26,6 +26,8 @@ namespace PastExamsHub.Core.Infrastructure.Persistence
 
         public DbSet<User> Users { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<ExamPeriod> ExamPeriods { get; set; }
 
         #endregion Tables
         public CoreDbContext

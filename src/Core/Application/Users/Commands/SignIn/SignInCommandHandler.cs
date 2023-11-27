@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 
 namespace PastExamsHub.Core.Application.Users.Commands.SignIn
 {
-    public class SignInCommandHandler : INotificationHandler<SignInCommand> //REVIEW: Handler name MUST start with Command name; SignInCoachCommandHandler -> SignInCommandCoachHandler
+    public class SignInCommandHandler : INotificationHandler<SignInCommand> 
     {
-        readonly IMediator Mediator;//REVIEW: not used - remove
+        readonly IMediator Mediator;
         readonly IUsersRepository UsersRepository;
         readonly ICurrentUserService CurrentUserService;
         readonly ICoreDbContext DbContext;

@@ -15,5 +15,27 @@ namespace PastExamsHub.Core.Domain.Entities
         public DateTime EndDate { get; set; }
         public ExamPeriodType PeriodType { get; set; }
 
+        public ExamPeriod(string name, DateTime startDate, DateTime endDate, ExamPeriodType periodType)
+        {
+            Uid = Guid.NewGuid().ToString();
+            Name = name;
+            StartDate = startDate;
+            EndDate = endDate;
+            PeriodType = periodType;
+        }
+
+        public ExamPeriod()
+        {
+            Uid = Guid.NewGuid().ToString();
+        }
+
+
+        public void UpdateFrom(ExamPeriod period)
+        {
+            Name = period.Name;
+            StartDate = period.StartDate;
+            EndDate = period.EndDate;
+            PeriodType = period.PeriodType;
+        }
     }
 }

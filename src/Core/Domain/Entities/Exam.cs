@@ -18,5 +18,22 @@ namespace PastExamsHub.Core.Domain.Entities
         public int NumberOfTasks { get; set; }
         public string Notes { get; set; }
 
+
+        public Exam()
+        {
+            Uid = Guid.NewGuid().ToString();
+        }
+
+        public Exam(Course course, ExamPeriod period, Document document, ExamType type, DateTime examDate, int numberOfTasks, string notes)
+        {
+            Uid = Guid.NewGuid().ToString();
+            Course = course;
+            Period = period;
+            Document = document;
+            Type = type;
+            ExamDate = examDate;
+            NumberOfTasks = numberOfTasks;
+            Notes = notes;
+        }
     }
 }
