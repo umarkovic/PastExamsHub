@@ -26,7 +26,7 @@ dotnet ef migrations add InitialEntities --context CoreDbContext --output-dir Pe
 dotnet ef migrations add SeedCourses --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
 
 dotnet ef migrations add AddsInitialExamEntities --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
-
+dotnet ef migrations add AddExamPeriodExamEntity --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
 
 [READING]
 https://www.entityframeworktutorial.net/efcore/cli-commands-for-ef-core-migration.aspx

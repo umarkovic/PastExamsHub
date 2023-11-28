@@ -28,6 +28,7 @@ namespace PastExamsHub.Core.Infrastructure.Persistence
         public DbSet<Course> Courses { get; set; }
         public DbSet<Exam> Exams { get; set; }
         public DbSet<ExamPeriod> ExamPeriods { get; set; }
+        public DbSet<ExamPeriodExam> ExamPeriodExam { get; set; }
 
         #endregion Tables
         public CoreDbContext
@@ -58,6 +59,9 @@ namespace PastExamsHub.Core.Infrastructure.Persistence
 
             builder.Entity<Course>()
                 .HasOne(y => y.Lecturer);
+
+            builder.Entity<ExamPeriod>()
+                .HasMany(x => x.Exams);
 
             //builder.Entity<Asset>().HasData(AssetData);
 

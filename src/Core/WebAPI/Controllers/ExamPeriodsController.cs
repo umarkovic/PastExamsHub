@@ -7,6 +7,7 @@ using PastExamsHub.Core.Application.Courses.Commands.Update;
 using PastExamsHub.Core.Application.Courses.Queries.GetCollection;
 using PastExamsHub.Core.Application.Courses.Queries.GetSingle;
 using PastExamsHub.Core.Application.ExamPeriods.Command.Create;
+using PastExamsHub.Core.Application.ExamPeriods.Command.Delete;
 using PastExamsHub.Core.Application.ExamPeriods.Command.Update;
 using PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection;
 using PastExamsHub.Core.Application.ExamPeriods.Queries.GetSingle;
@@ -70,5 +71,15 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         }
 
 
+        [HttpDelete("{uid}")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
+        public async Task<ActionResult<DeleteExamPeriodCommandResult>> Delete(string uid, DeleteExamPeriodCommand command)
+        {
+            command.Uid = WebUtility.UrlDecode(uid);
+
+            var result = await Mediator.Send(command);
+
+            return Ok(result);
+        }
     }
 }

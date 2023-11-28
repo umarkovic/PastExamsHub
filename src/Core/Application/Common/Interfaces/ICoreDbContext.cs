@@ -12,6 +12,8 @@ namespace PastExamsHub.Core.Application.Common.Interfaces
         DbSet<User> Users { get; set; }
         DbSet<Course> Courses { get; set; }
         DbSet<Exam> Exams { get; set; }
-        DbSet<Core.Domain.Entities.ExamPeriod> ExamPeriods { get; set; }
+        DbSet<ExamPeriod> ExamPeriods { get; set; }
+
+        DbSet<ExamPeriodExam> ExamPeriodExam { get; set; }
     }
 }
