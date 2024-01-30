@@ -25,7 +25,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
 
             var query = (
                 from c in DbContext.Courses
-                join u in DbContext.Users on c.Lecturer.Id equals u.Id
+                join u in DbContext.Users on c.Lecturer.Id equals u.Id into u_join
+                from _u in u_join.DefaultIfEmpty()
                 where (request.StudyYear== null|| c.StudyYear == request.StudyYear)
                 select new CourseModel
                 {
@@ -33,8 +34,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
                     Name = c.Name,
                     StudyYear =c.StudyYear,
                     ESPB = c.ESPB,
-                    LecturerFirstName = u.FirstName,
-                    LecturerLastName = u.LastName,
+                    LecturerFirstName = _u != null ? _u.FirstName : "/",
+                    LecturerLastName = _u != null ? _u.LastName : "/",
                     CourseType = c.CourseType
                 }
                 );

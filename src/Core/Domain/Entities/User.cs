@@ -27,6 +27,7 @@ namespace PastExamsHub.Core.Domain.Entities
             FirstName = user.FirstName;
             LastName = user.LastName;
             Gender = user.Gender;
+            
 
 
         }

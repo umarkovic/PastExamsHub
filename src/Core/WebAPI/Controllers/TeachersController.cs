@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Base.WebAPI.Controllers;
+using PastExamsHub.Core.Application.Teachers.Commands.Update;
 using PastExamsHub.Core.Application.Teachers.Queries.GetCollection;
 using PastExamsHub.Core.Application.Teachers.Queries.GetSingle;
 using System.Net;
@@ -42,16 +43,16 @@ namespace PastExamsHub.Core.WebAPI.Controllers
             return Ok(result);
         }
 
-        //[HttpPut("{uid}")]
-        //[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
-        //public async Task<ActionResult<UpdateUserCommandResult>> Update(string uid, UpdateUserCommand command)
-        //{
+        [HttpPut("{uid}")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
+        public async Task<ActionResult<UpdateTeacherCommandResult>> Update(string uid, UpdateTeacherCommand command)
+        {
 
-        //    command.UserUid = WebUtility.UrlDecode(uid);
-        //    var result = await Mediator.Send(command);
+            command.UserUid = WebUtility.UrlDecode(uid);
+            var result = await Mediator.Send(command);
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
 
 

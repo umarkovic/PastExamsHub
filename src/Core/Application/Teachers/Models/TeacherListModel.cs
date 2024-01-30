@@ -17,6 +17,7 @@ namespace PastExamsHub.Core.Application.Teachers.Models
         public string Email { get; set; }
         public string FullName { get; set; }
         public List<string> Courses { get; set; }
+        public int NumberOfCourses { get; set; }
 
 
 

@@ -2,15 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Core.Application.Common.Interfaces;
-using PastExamsHub.Core.Application.Common.Users.Models;
 using PastExamsHub.Core.Application.Courses.Models;
 using PastExamsHub.Core.Application.Teachers.Models;
-using PastExamsHub.Core.Application.Users.Commands.Update;
-using PastExamsHub.Core.Application.Users.Queries.GetSingle;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -52,6 +46,7 @@ namespace PastExamsHub.Core.Application.Teachers.Queries.GetSingle
                 ).ToListAsync();
 
             teacher.Courses = courses;
+            teacher.NumberOfCourses = courses.Count();
 
 
             return new GetTeacherQueryResult { User = teacher };

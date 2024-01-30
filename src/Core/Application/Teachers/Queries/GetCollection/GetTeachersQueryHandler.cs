@@ -51,6 +51,8 @@ namespace PastExamsHub.Core.Application.Teachers.Queries.GetCollection
                         where u.Id == user.Id
                         select c.Name
                      ).ToListAsync();
+
+                user.NumberOfCourses = user.Courses.Count();
             }
 
 

@@ -18,6 +18,7 @@ namespace PastExamsHub.Core.Application.Teachers.Models
         public RoleType Role { get; set; }
         public GenderType Gender { get; set; }
         public List<CourseListModel> Courses { get; set; }
+        public int NumberOfCourses { get; set; }
 
 
 
