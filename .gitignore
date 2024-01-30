@@ -234,3 +234,5 @@ log*.txt
 package-lock.json
 **/WebUI/dist/
 .angular
+/src/Authority/WebAPI/appsettings.json
+/src/Core/WebAPI/appsettings.json
