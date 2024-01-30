@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Models\" />
-    <Folder Include="Exams\Queries\" />
+    <Folder Include="Exams\Queries\GetCollection\" />
   </ItemGroup>
 
 </Project>

@@ -21,39 +21,27 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             ExamPeriodRepository = examPeriodRepository;
 
 
-
-            //COMPLETE: add validation if Exam is already created for givvn period
-
-            RuleFor(x => x.ExamDate)
-                 .Cascade(CascadeMode.Stop)
-                 .NotEmpty()
-                  .MustAsync(async (context, date, cancellation) =>
-                  {
-                      var period =await ExamPeriodRepository
-                      .GetQuery()
-                      .Where(x=>x.Uid == context.PeriodUid)
-                      .SingleOrDefaultAsync();
-
-                      return date >= period.StartDate;
-
-                  })
-               .WithMessage("Exam date must be greather than exam period start date.");
-
-
             RuleFor(x => x.ExamDate)
                 .Cascade(CascadeMode.Stop)
-                .NotEmpty()
-                 .MustAsync(async (context, date, cancellation) =>
-                 {
-                     var period = await ExamPeriodRepository
-                     .GetQuery()
-                     .Where(x => x.Uid == context.PeriodUid)
-                     .SingleOrDefaultAsync();
+                 .NotNull()
+                 .NotEmpty();
 
-                     return date <= period.EndDate;
+            RuleFor(x => x.PeriodUid)
+               .Cascade(CascadeMode.Stop)
+                .NotNull()
+                .NotEmpty();
 
-                 })
-              .WithMessage("Exam date must be Less than exam period end date.");
+            RuleFor(x => x.CourseUid)
+               .Cascade(CascadeMode.Stop)
+                .NotNull()
+                .NotEmpty();
+
+            RuleFor(x => x.NumberOfTasks)
+               .Cascade(CascadeMode.Stop)
+                .NotNull()
+                .NotEmpty();
+
+
         }
-}
+    }
 }
