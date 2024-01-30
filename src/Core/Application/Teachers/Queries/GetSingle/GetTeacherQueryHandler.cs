@@ -45,8 +45,12 @@ namespace PastExamsHub.Core.Application.Teachers.Queries.GetSingle
                  }
                 ).ToListAsync();
 
-            teacher.Courses = courses;
-            teacher.NumberOfCourses = courses.Count();
+            if(teacher!=null)
+            {
+                teacher.Courses = courses;
+                teacher.NumberOfCourses = courses!=null ?courses.Count() : 0;
+            }
+           
 
 
             return new GetTeacherQueryResult { User = teacher };

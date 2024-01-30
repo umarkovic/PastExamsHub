@@ -24,7 +24,7 @@ namespace PastExamsHub.Core.WebAPI.Controllers
 
         }
 
-        [HttpGet("Courses")]
+        [HttpGet]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<ActionResult<GetCoursesQueryResult>> GetCollection([FromQuery] GetCoursesQuery request)
         {
