@@ -79,12 +79,19 @@ namespace PastExamsHub.Authority.Infrastructure.Services
             //    throw new Base.Application.Common.Exceptions.ValidationException(validationFailure);
             //}
             var user = await _FindByEmailAsync(email);
+
+            if (user.EmailConfirmed == false)
+            {
+                var validationFailure = new ValidationFailure("signInValues", "Vaš profesorski nalog još nije potvrdjen. Pokušajte ponovo!");
+                throw new ValidationException(validationFailure);
+            }
+
             var myClaims = await UserManager.GetClaimsAsync(user);
 
             var result = await SignInManager.PasswordSignInAsync(email, password, true, false);
             if (!result.Succeeded)
             {
-                var validationFailure = new ValidationFailure("signInValues", "Wrong password or email, please try again!");
+                var validationFailure = new ValidationFailure("signInValues", " Uneli ste pogrešnu šifra ili email, pokušajte ponovo!");
                 throw new ValidationException(validationFailure);
             }
         }
@@ -97,7 +104,7 @@ namespace PastExamsHub.Authority.Infrastructure.Services
             return await UserManager.GenerateEmailConfirmationTokenAsync(user);
         }
 
-        public async Task SignUpAsync(string email, string password, string firstName, string lastName,CancellationToken cancellationToken)
+        public async Task SignUpAsync(string email, string password, string firstName, string lastName, bool isTeacher ,CancellationToken cancellationToken)
         {
 
             var user = new IdentityApplicationUser
@@ -106,8 +113,8 @@ namespace PastExamsHub.Authority.Infrastructure.Services
                 UserName = email,
                 FirstName = firstName,
                 LastName = lastName,
-                Role = RoleType.Student,
-                EmailConfirmed = true
+                Role = isTeacher ? RoleType.Teacher : RoleType.Student,
+                EmailConfirmed = isTeacher? false : true
             };
 
             

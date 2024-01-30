@@ -12,7 +12,7 @@ namespace PastExamsHub.Authority.Application.Common.Interfaces
     {
         Task<IApplicationUser> FindByEmailAsync(string email);
         Task SignInAsync(string email, string password, string returnUri);
-        Task SignUpAsync(string email, string password, string firstName, string lastName, CancellationToken cancellationToken);
+        Task SignUpAsync(string email, string password, string firstName, string lastName, bool isTeacher, CancellationToken cancellationToken);
         Task<string> GenerateEmailConfirmationTokenAsync(string email);
         Task<string> SignOutAsync(string logoutId);
         Task<string> GeneratePasswordResetTokenAsync(string email);

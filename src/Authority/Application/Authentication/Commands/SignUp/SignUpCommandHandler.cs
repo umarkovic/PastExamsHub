@@ -22,7 +22,7 @@ namespace PastExamsHub.Authority.Application.Authentication.Commands.SignUp
 
         public async Task<Unit> Handle(SignUpCommand command, CancellationToken cancellationToken)
         {
-            await IdentityService.SignUpAsync(command.Email, command.Password, command.FirstName, command.LastName, cancellationToken);
+            await IdentityService.SignUpAsync(command.Email, command.Password, command.FirstName, command.LastName, command.IsTeacher, cancellationToken);
 
             return MediatR.Unit.Value;
         }

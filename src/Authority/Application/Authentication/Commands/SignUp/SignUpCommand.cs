@@ -14,6 +14,7 @@ namespace PastExamsHub.Authority.Application.Authentication.Commands.SignUp
         public string Email{ get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        public bool IsTeacher { get; set; }
 
     }
 }
