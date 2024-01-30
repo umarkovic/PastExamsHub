@@ -1,15 +1,15 @@
-﻿using System;
+﻿using PastExamsHub.Core.Application.Teachers.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PastExamsHub.Core.Application.Courses.Models;
 
-namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
+namespace PastExamsHub.Core.Application.Teachers.Queries.GetCollection
 {
-    public class GetCoursesQueryResult 
+    public class GetTeachersQueryResult
     {
-        public List<CourseModel> Courses { get; set; }
+        public List<TeacherListModel> Teachers { get; set; }
 
         #region Pagination
         public int TotalCount { get; set; }

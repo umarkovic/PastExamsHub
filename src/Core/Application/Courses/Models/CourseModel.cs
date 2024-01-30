@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PastExamsHub.Core.Application.Courses
+namespace PastExamsHub.Core.Application.Courses.Models
 {
     public class CourseModel
     {

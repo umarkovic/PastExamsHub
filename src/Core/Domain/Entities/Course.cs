@@ -11,6 +11,7 @@ namespace PastExamsHub.Core.Domain.Entities
 {
     public class Course : DomainEntity
     {
+        //COMPLETE: possibly expand course with semester
         public string Name { get; set; }
         public CourseType CourseType { get; set; }
         public StudyType StudyType { get; set; }

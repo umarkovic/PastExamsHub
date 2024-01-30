@@ -48,6 +48,7 @@ namespace PastExamsHub.Core.Application.Users.Commands.SignIn
             if(user == null)
             {
                 //COMPLETE: Finisih after introducing CurrentUserService working
+                //COMPLETE: Handle creation of teachers
             }
 
         }

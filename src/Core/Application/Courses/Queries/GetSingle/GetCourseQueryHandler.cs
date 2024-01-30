@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PastExamsHub.Core.Application.Common.Interfaces;
+using PastExamsHub.Core.Application.Courses.Models;
 using PastExamsHub.Core.Application.Courses.Queries.GetCollection;
 using System;
 using System.Collections.Generic;

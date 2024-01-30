@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PastExamsHub.Base.Application.Common.Models;
+using PastExamsHub.Core.Application.Courses.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
 {
@@ -22,8 +25,9 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
 
         public async Task<GetExamPeriodsQueryResult> Handle(GetExamPeriodsQuery request, CancellationToken cancellationToken)
         {
-            var results = await (
+            var query  =  (
                 from ep in DbContext.ExamPeriods
+                orderby ep.StartDate descending
                 select new ExamPeriodModel
                 {
                     Uid = ep.Uid,
@@ -32,9 +36,21 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
                     EndDate = ep.EndDate.Date,
                     PeriodDayDuration = (ep.EndDate.Date - ep.StartDate.Date).Days,
                 }
-                ).ToListAsync(cancellationToken);
+                );
 
-            return new GetExamPeriodsQueryResult { Periods = results };
+
+            var results = await PaginationResult<ExamPeriodModel>.From(query, request.PageNumber, request.PageSize);
+
+            return new GetExamPeriodsQueryResult 
+            {
+                Periods = results.Items,
+                TotalCount = results.TotalCount,
+                PageSize = results.PageSize,
+                CurrentPage = results.CurrentPage,
+                TotalPages = results.TotalPages,
+                HasNext = results.HasNext,
+                HasPrevious = results.HasPrevious
+            };
         }
     }
 }
