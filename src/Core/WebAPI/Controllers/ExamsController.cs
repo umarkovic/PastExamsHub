@@ -8,14 +8,15 @@ using PastExamsHub.Core.Application.ExamPeriods.Command.Update;
 using PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection;
 using PastExamsHub.Core.Application.ExamPeriods.Queries.GetSingle;
 using PastExamsHub.Core.Application.Exams.Command.Create;
+using PastExamsHub.Core.Application.Exams.Queries.GetCollection;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace PastExamsHub.Core.WebAPI.Controllers
 {
-    public class ExamController : ApiController
+    public class ExamsController : ApiController
     {
-        public ExamController
+        public ExamsController
         (
             IMediator mediator,
             ICurrentUserService currentUserService
@@ -25,15 +26,15 @@ namespace PastExamsHub.Core.WebAPI.Controllers
 
         }
 
-        //[HttpGet("ExamPeriod")]
-        //[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
-        //public async Task<ActionResult<GetExamPeriodsQueryResult>> GetCollection([FromQuery] GetExamPeriodsQuery request)
-        //{
+        [HttpGet]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public async Task<ActionResult<GetExamsQueryResult>> GetCollection([FromQuery] GetExamsQuery request)
+        {
 
-        //    var result = await Mediator.Send(request);
+            var result = await Mediator.Send(request);
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
 
 
