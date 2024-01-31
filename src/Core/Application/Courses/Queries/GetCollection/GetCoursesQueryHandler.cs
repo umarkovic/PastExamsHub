@@ -36,7 +36,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
                     ESPB = c.ESPB,
                     LecturerFirstName = _u != null ? _u.FirstName : "/",
                     LecturerLastName = _u != null ? _u.LastName : "/",
-                    CourseType = c.CourseType
+                    CourseType = c.CourseType,
+
                 }
                 );
 

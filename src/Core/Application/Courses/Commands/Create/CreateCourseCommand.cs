@@ -15,6 +15,7 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Create
         public string Name { get; set; }
         public CourseType CourseType { get; set; }
         public int StudyYear { get; set; }
+        public int Semester { get; set; }
         public int ESPB { get; set; }
     }
 }

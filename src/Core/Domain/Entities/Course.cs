@@ -17,6 +17,7 @@ namespace PastExamsHub.Core.Domain.Entities
         public StudyType StudyType { get; set; }
         public  User Lecturer { get; set; }
         public int StudyYear { get; set; }
+        public int  Semester { get; set; }
         public int ESPB { get; set; }
 
         public Course()
@@ -29,6 +30,7 @@ namespace PastExamsHub.Core.Domain.Entities
             string name,
             CourseType type,
             int year,
+            int semester,
             int espb
         )
         {
@@ -36,6 +38,7 @@ namespace PastExamsHub.Core.Domain.Entities
             Name = name;
             CourseType = type;
             StudyYear = year;
+            Semester = semester;
             ESPB = espb;
         }
 
@@ -46,6 +49,7 @@ namespace PastExamsHub.Core.Domain.Entities
             //StudyType = course.StudyType;
             ESPB = course.ESPB;
             StudyYear = course.StudyYear;
+            Semester = course.Semester;
             CourseType = course.CourseType;
 
         }

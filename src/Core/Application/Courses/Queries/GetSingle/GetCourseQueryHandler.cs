@@ -40,7 +40,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetSingle
                     ESPB = c.ESPB,
                     LecturerFirstName = c.Lecturer.FirstName,
                     LecturerLastName = c.Lecturer.LastName,
-                    CourseType = c.CourseType
+                    CourseType = c.CourseType,
+                    Semester = c.Semester
                 })
                 .SingleOrDefaultAsync(cancellationToken);
 
