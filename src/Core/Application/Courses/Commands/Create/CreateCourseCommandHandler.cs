@@ -34,7 +34,7 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Create
             var lecturer = await UsersRepository.GetByUidAsync(command.LecturerUid, cancellationToken);
 
 
-            Course course = new Course(command.Name, command.CourseType, command.StudyYear, command.ESPB);
+            Course course = new Course(command.Name, command.CourseType, command.StudyYear, command.ESPB, command.Semester);
             course.Lecturer = lecturer;
             course.StudyType = StudyType.BachelorStudies; //COMPLETE: change this later
 

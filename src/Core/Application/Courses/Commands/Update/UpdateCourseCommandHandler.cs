@@ -44,6 +44,7 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Update
                 Name = command.Name,
                 CourseType = command.CourseType,
                 StudyYear = command.StudyYear,
+                Semester = command.Semester,
                 ESPB = command.ESPB,
 
             };

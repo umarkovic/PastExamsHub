@@ -10,6 +10,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using IronOcr;
 using System.Net.NetworkInformation;
+using PastExamsHub.Base.Domain.Enums;
+using PastExamsHub.Base.Application.Common.Models;
+using PastExamsHub.Core.Application.Courses.Models;
 
 namespace PastExamsHub.Core.Application.Common.Users.Queries.GetCollection
 {
@@ -24,11 +27,9 @@ namespace PastExamsHub.Core.Application.Common.Users.Queries.GetCollection
         public async Task<GetUsersQueryResult> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
 
-            
-
-
-            var results = await (
+            var query =  (
                 from u in DbContext.Users
+                where u.Role == RoleType.Student
                 select new UserModel
                 {
                     Uid = u.Uid,
@@ -40,9 +41,19 @@ namespace PastExamsHub.Core.Application.Common.Users.Queries.GetCollection
                     Index = u.Index,
                     Role = u.Role,
                 }
-                ).ToListAsync(cancellationToken);
+                );
+            var results = await PaginationResult<UserModel>.From(query, request.PageNumber, request.PageSize);
 
-            return new GetUsersQueryResult { Users = results};
+            return new GetUsersQueryResult 
+            {
+                Users = results.Items,
+                TotalCount = results.TotalCount,
+                PageSize = results.PageSize,
+                CurrentPage = results.CurrentPage,
+                TotalPages = results.TotalPages,
+                HasNext = results.HasNext,
+                HasPrevious = results.HasPrevious
+            };
         }
 
         static string GetFileExtension(string filePath)

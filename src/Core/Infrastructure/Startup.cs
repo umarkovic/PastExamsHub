@@ -42,7 +42,7 @@ namespace PastExamsHub.Core.Infrastructure
             services.AddScoped<IBaseRepository<ExamPeriodExam>, BaseRepository<ICoreDbContext, ExamPeriodExam>>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<ICoursesRepository, CoursesRepository>();
-            services.AddScoped<IExamRepository, ExamRepository>();
+            services.AddScoped<IExamsRepository, ExamsRepository>();
             return services;
         }
     }

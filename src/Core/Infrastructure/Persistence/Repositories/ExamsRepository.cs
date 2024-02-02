@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace PastExamsHub.Core.Infrastructure.Persistence.Repositories
 {
-    public class ExamRepository : BaseRepository<ICoreDbContext, Exam>, IExamRepository
+    public class ExamsRepository : BaseRepository<ICoreDbContext, Exam>, IExamsRepository
     {
 
-        public ExamRepository(ICoreDbContext dbContext) : base(dbContext)
+        public ExamsRepository(ICoreDbContext dbContext) : base(dbContext)
         {
         }
 
@@ -24,7 +24,7 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Repositories
 
             //double check
             return base.GetQuery()
-                .Include(x => x.Course)
+                .Include(x => x.Course).ThenInclude(x=>x.Lecturer)
                 .Include(x=>x.Document)
                 .Include(x=>x.Period);
 

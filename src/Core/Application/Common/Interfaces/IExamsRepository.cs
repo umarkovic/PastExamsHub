@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PastExamsHub.Core.Application.Common.Interfaces
 {
-    public interface IExamRepository : IBaseRepository<Exam>
+    public interface IExamsRepository : IBaseRepository<Exam>
     {
     }
 }

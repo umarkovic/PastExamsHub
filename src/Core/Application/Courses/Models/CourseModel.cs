@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PastExamsHub.Core.Application.Courses
+namespace PastExamsHub.Core.Application.Courses.Models
 {
     public class CourseModel
     {
@@ -16,6 +16,7 @@ namespace PastExamsHub.Core.Application.Courses
         public string LecturerFirstName { get; set; }
         public string LecturerLastName { get; set; }
         public int StudyYear { get; set; }
+        public int Semester { get; set; }
         public int ESPB { get; set; }
     }
 }

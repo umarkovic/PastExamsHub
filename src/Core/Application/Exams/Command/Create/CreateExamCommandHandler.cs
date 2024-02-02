@@ -19,13 +19,13 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
         readonly ICoreDbContext DbContext;
         readonly IBaseRepository<ExamPeriod> ExamPeriodRepository;
         readonly IBaseRepository<ExamPeriodExam> ExamPeriodExamRepository;
-        readonly IExamRepository ExamRepository;
+        readonly IExamsRepository ExamRepository;
         readonly ICoursesRepository CoursesRepository;
         public CreateExamCommandHandler
         (
             IBaseRepository<ExamPeriod> examPeriodRepository,
             IBaseRepository<ExamPeriodExam> examPeriodExamRepository,
-            IExamRepository examRepository,
+            IExamsRepository examRepository,
             ICoursesRepository coursesRepository,
             ICoreDbContext dbContext
 
