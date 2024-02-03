@@ -20,6 +20,7 @@ namespace PastExamsHub.Core.Domain.Entities
         public int? Index { get; set; }
         public int? StudyYear { get; set; }
         public GenderType Gender { get; set; }
+        public string FullName { get; set; }
 
 
         public void UpdateLecturer(User user)
@@ -27,6 +28,7 @@ namespace PastExamsHub.Core.Domain.Entities
             FirstName = user.FirstName;
             LastName = user.LastName;
             Gender = user.Gender;
+            FullName = user.FirstName + " " + user.LastName;
             
 
 
@@ -39,7 +41,7 @@ namespace PastExamsHub.Core.Domain.Entities
             Gender = user.Gender;
             Index = user.Index;
             StudyYear= user.StudyYear;
-
+            FullName = user.FirstName + " " + user.LastName;
 
         }
 

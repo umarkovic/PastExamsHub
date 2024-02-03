@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Base.Infrastructure.Identity;
 using PastExamsHub.Base.Infrastructure.Services;
+using PastExamsHub.Base.Infrastructure.Persistence;
 
 namespace PastExamsHub.Base.Infrastructure
 {
@@ -66,6 +67,7 @@ namespace PastExamsHub.Base.Infrastructure
         )
         {
             services.AddTransient<IDateTime, DateTimeService>();
+            services.AddScoped(typeof(ISearchQueryBuilder<>), typeof(SearchQueryBuilder<>));
         }
 
         /*

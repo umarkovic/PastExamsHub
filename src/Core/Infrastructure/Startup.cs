@@ -38,6 +38,8 @@ namespace PastExamsHub.Core.Infrastructure
             services.AddTransient<IEmailTemplateService, EmailTemplateService>();
             services.AddTransient<IAuthorityService, AuthorityService>();
 
+            services.AddScoped<IDbContextResolver, DbContextResolver<ICoreDbContext>>();
+
             services.AddScoped<IBaseRepository<ExamPeriod>, BaseRepository<ICoreDbContext, ExamPeriod>>();
             services.AddScoped<IBaseRepository<ExamPeriodExam>, BaseRepository<ICoreDbContext, ExamPeriodExam>>();
             services.AddScoped<IUsersRepository, UsersRepository>();

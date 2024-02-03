@@ -12,21 +12,29 @@ using Microsoft.EntityFrameworkCore;
 using PastExamsHub.Base.Application.Common.Models;
 using PastExamsHub.Core.Application.Courses.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using PastExamsHub.Base.Application.Common.Interfaces;
+using PastExamsHub.Core.Domain.Entities;
 
 namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
 {
     public class GetExamPeriodsQueryHandler : IRequestHandler <GetExamPeriodsQuery,GetExamPeriodsQueryResult>
     {
         readonly ICoreDbContext DbContext;
-        public GetExamPeriodsQueryHandler(ICoreDbContext dbContext)
+        readonly ISearchQueryBuilder<ExamPeriod> QueryBuilder;
+        public GetExamPeriodsQueryHandler
+        (
+            ICoreDbContext dbContext,
+            ISearchQueryBuilder<ExamPeriod> queryBuilder
+        )
         {
             DbContext = dbContext;
+            QueryBuilder = queryBuilder;
         }
 
         public async Task<GetExamPeriodsQueryResult> Handle(GetExamPeriodsQuery request, CancellationToken cancellationToken)
         {
             var query  =  (
-                from ep in DbContext.ExamPeriods
+                from ep in QueryBuilder.GetQuery(request.SearchText)
                 orderby ep.StartDate descending
                 select new ExamPeriodModel
                 {

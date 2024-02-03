@@ -13,22 +13,31 @@ using System.Net.NetworkInformation;
 using PastExamsHub.Base.Domain.Enums;
 using PastExamsHub.Base.Application.Common.Models;
 using PastExamsHub.Core.Application.Courses.Models;
+using PastExamsHub.Core.Domain.Entities;
+using PastExamsHub.Base.Application.Common.Interfaces;
 
 namespace PastExamsHub.Core.Application.Common.Users.Queries.GetCollection
 {
     public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, GetUsersQueryResult>
     {
         readonly ICoreDbContext DbContext;
-        public GetUsersQueryHandler(ICoreDbContext dbContext)
+        readonly ISearchQueryBuilder<User> QueryBuilder;
+        public GetUsersQueryHandler
+        (
+            ICoreDbContext dbContext,
+            ISearchQueryBuilder<User> queryBuilder
+
+        )
         {
             DbContext = dbContext;
+            QueryBuilder = queryBuilder;
         }
 
         public async Task<GetUsersQueryResult> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
 
             var query =  (
-                from u in DbContext.Users
+                from u in QueryBuilder.GetQuery(request.SearchText)
                 where u.Role == RoleType.Student
                 select new UserModel
                 {

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Base.Application.Common.Models;
 using PastExamsHub.Base.Domain.Enums;
 using PastExamsHub.Core.Application.Common.Interfaces;
@@ -17,9 +18,15 @@ namespace PastExamsHub.Core.Application.Teachers.Queries.GetCollection
     public class GetTeachersQueryHandler : IRequestHandler<GetTeachersQuery, GetTeachersQueryResult>
     {
         readonly ICoreDbContext DbContext;
-        public GetTeachersQueryHandler(ICoreDbContext dbContext)
+        readonly ISearchQueryBuilder<User> QueryBuilder;
+        public GetTeachersQueryHandler
+        (
+            ICoreDbContext dbContext,
+            ISearchQueryBuilder<User> queryBuilder
+        )
         {
             DbContext = dbContext;
+            QueryBuilder = queryBuilder;
         }
 
         public async Task<GetTeachersQueryResult> Handle(GetTeachersQuery request, CancellationToken cancellationToken)
@@ -27,7 +34,7 @@ namespace PastExamsHub.Core.Application.Teachers.Queries.GetCollection
 
             var query =  
                 (
-                  from u in DbContext.Users
+                  from u in QueryBuilder.GetQuery(request.SearchText)
                   where u.Role == RoleType.Teacher
                   select new TeacherListModel
                   {
