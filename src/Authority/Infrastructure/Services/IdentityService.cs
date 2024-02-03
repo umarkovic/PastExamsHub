@@ -71,13 +71,11 @@ namespace PastExamsHub.Authority.Infrastructure.Services
 
         public async Task SignInAsync(string email, string password, string returnUri)
         {
-            //string returnUrl = new Uri(returnUri).PathAndQuery;
-            //var context = await Interaction.GetAuthorizationContextAsync(returnUrl);
-            //if (context == null)
-            //{
-            //    var validationFailure = new ValidationFailure(nameof(returnUrl), "Not authorized");
-            //    throw new Base.Application.Common.Exceptions.ValidationException(validationFailure);
-            //}
+            //await ValidateReturnUrl(returnUri);
+
+            //await SignInManager.SignOutAsync();
+            //var trimmedEmail = email.Trim();
+
             var user = await _FindByEmailAsync(email);
 
             if (user.EmailConfirmed == false)
@@ -86,12 +84,27 @@ namespace PastExamsHub.Authority.Infrastructure.Services
                 throw new ValidationException(validationFailure);
             }
 
-            var myClaims = await UserManager.GetClaimsAsync(user);
+            //string returnUrl = new Uri(returnUri).PathAndQuery;
+            //var context = await Interaction.GetAuthorizationContextAsync(returnUrl);
 
             var result = await SignInManager.PasswordSignInAsync(email, password, true, false);
+
+
             if (!result.Succeeded)
             {
                 var validationFailure = new ValidationFailure("signInValues", " Uneli ste pogrešnu šifra ili email, pokušajte ponovo!");
+                throw new ValidationException(validationFailure);
+            }
+        }
+
+
+        async Task ValidateReturnUrl(string returnUri)
+        {
+            string returnUrl = new Uri(returnUri).PathAndQuery;
+            var context = await Interaction.GetAuthorizationContextAsync(returnUrl);
+            if (context == null)
+            {
+                var validationFailure = new ValidationFailure(nameof(returnUrl), "Not authorized");
                 throw new ValidationException(validationFailure);
             }
         }
