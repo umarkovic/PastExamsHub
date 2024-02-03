@@ -14,6 +14,8 @@ namespace PastExamsHub.Core.Domain.Entities
         public User User { get; set; }
         public string Comment { get; set; }
         public ExamPeriodType PeriodType { get; set; }
+        public DateTime CreatedDateTimeUtc { get; set; }
+        public int? TaskNumber { get; set; }
         public Document Document { get; set; }
         public int GradeCount { get; set; }
 

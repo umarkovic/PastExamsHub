@@ -15,6 +15,7 @@ namespace PastExamsHub.Core.Domain.Entities
         public Document Document { get; set; }
         public ExamType Type { get; set; }
         public DateTime ExamDate { get; set; }
+        public DateTime CreatedDateTimeUtc { get; set; }
         public int NumberOfTasks { get; set; }
         public string Notes { get; set; }
 
@@ -33,6 +34,7 @@ namespace PastExamsHub.Core.Domain.Entities
             Type = type;
             ExamDate = examDate;
             NumberOfTasks = numberOfTasks;
+            CreatedDateTimeUtc = DateTime.UtcNow;
             Notes = notes;
         }
     }

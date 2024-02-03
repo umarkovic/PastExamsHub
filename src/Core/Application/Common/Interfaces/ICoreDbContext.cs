@@ -13,7 +13,7 @@ namespace PastExamsHub.Core.Application.Common.Interfaces
         DbSet<Course> Courses { get; set; }
         DbSet<Exam> Exams { get; set; }
         DbSet<ExamPeriod> ExamPeriods { get; set; }
-
         DbSet<ExamPeriodExam> ExamPeriodExam { get; set; }
+        DbSet<ExamSolution> ExamSolutions { get; set; }
     }
 }

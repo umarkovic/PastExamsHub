@@ -9,6 +9,7 @@ using PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection;
 using PastExamsHub.Core.Application.ExamPeriods.Queries.GetSingle;
 using PastExamsHub.Core.Application.Exams.Command.Create;
 using PastExamsHub.Core.Application.Exams.Queries.GetCollection;
+using PastExamsHub.Core.Application.Exams.Queries.GetLatestExams;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -47,6 +48,16 @@ namespace PastExamsHub.Core.WebAPI.Controllers
             return Ok(result);
         }
 
+
+        [HttpGet("LatestExams")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public async Task<ActionResult<GetLatestExamsQueryResult>> GetLatestExams([FromQuery] GetLatestExamsQuery request)
+        {
+
+            var result = await Mediator.Send(request);
+
+            return Ok(result);
+        }
         //[HttpGet("{uid}")]
         //[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         //public async Task<ActionResult<GetExamPeriodQueryResult>> GetSingle(string uid, [FromQuery] GetExamPeriodQuery request)

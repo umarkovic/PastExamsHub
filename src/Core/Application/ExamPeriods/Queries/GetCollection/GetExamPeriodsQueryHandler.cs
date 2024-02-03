@@ -1,19 +1,11 @@
 ﻿using MediatR;
+using PastExamsHub.Base.Application.Common.Interfaces;
+using PastExamsHub.Base.Application.Common.Models;
 using PastExamsHub.Core.Application.Common.Interfaces;
-using PastExamsHub.Core.Application.Courses.Queries.GetCollection;
-using PastExamsHub.Core.Application.Courses;
-using System;
-using System.Collections.Generic;
+using PastExamsHub.Core.Domain.Entities;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using PastExamsHub.Base.Application.Common.Models;
-using PastExamsHub.Core.Application.Courses.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using PastExamsHub.Base.Application.Common.Interfaces;
-using PastExamsHub.Core.Domain.Entities;
 
 namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
 {
