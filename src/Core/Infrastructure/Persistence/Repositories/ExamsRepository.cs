@@ -29,5 +29,10 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Repositories
                 .Include(x=>x.Period);
 
         }
+
+        public int GetExamsCount()
+        {
+            return base.GetQuery().Count();
+        }
     }
 }

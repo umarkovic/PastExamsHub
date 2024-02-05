@@ -11,5 +11,7 @@ namespace PastExamsHub.Base.Application.Common.Interfaces
     public interface IUsersRepository : IBaseRepository<User>
     {
         Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken);
+        int GetStudentsCount();
+        int GetTeachersCount();
     }
 }

@@ -28,6 +28,7 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
             var query  =  (
                 from ep in QueryBuilder.GetQuery(request.SearchText)
                 orderby ep.StartDate descending
+                where ep.IsSoftDeleted == false
                 select new ExamPeriodModel
                 {
                     Uid = ep.Uid,

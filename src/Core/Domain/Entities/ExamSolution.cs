@@ -18,6 +18,8 @@ namespace PastExamsHub.Core.Domain.Entities
         public int? TaskNumber { get; set; }
         public Document Document { get; set; }
         public int GradeCount { get; set; }
+        public bool IsSoftDeleted { get; set; }
+
 
     }
 }

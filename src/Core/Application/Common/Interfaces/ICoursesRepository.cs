@@ -11,5 +11,6 @@ namespace PastExamsHub.Core.Application.Common.Interfaces
 {
     public interface ICoursesRepository : IBaseRepository<Course>
     {
+        int GetCoursesCount();
     }
 }

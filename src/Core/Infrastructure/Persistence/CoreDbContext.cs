@@ -99,53 +99,53 @@ namespace PastExamsHub.Core.Infrastructure.Persistence
         {
             int i = 0;
             //1 god
-            yield return new { Id = ++i, Uid = "aip", Name = "Algoritmi i programiranje", CourseType =CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1,Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "elkomp", Name = "Elektronske komponente", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "fizika", Name = "Fizika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "labfizika", Name = "Lab praktikum - Fizika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 3 };
-            yield return new { Id = ++i, Uid = "mat1", Name = "Matematika 1", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "mat2", Name = "Matematika 2", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 5 };
-            yield return new { Id = ++i, Uid = "oe1", Name = "Osnovi elektrotehnike 1", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "oe2", Name = "Osnovi elektrotehnike 2", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "uue", Name = "Uvod u elektroniku", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 3 };
-            yield return new { Id = ++i, Uid = "uui", Name = "Uvod u inzenjerstvo", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 3 };
-            yield return new { Id = ++i, Uid = "uur", Name = "Uvod u racunarstvo", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 3 };
+            yield return new { Id = ++i, Uid = "aip", Name = "Algoritmi i programiranje", CourseType =CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1,Semester = 2, ESPB = 6 , IsSoftDeleted = false};
+            yield return new { Id = ++i, Uid = "elkomp", Name = "Elektronske komponente", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "fizika", Name = "Fizika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "labfizika", Name = "Lab praktikum - Fizika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 3, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "mat1", Name = "Matematika 1", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "mat2", Name = "Matematika 2", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 5, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "oe1", Name = "Osnovi elektrotehnike 1", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "oe2", Name = "Osnovi elektrotehnike 2", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "uue", Name = "Uvod u elektroniku", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 3, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "uui", Name = "Uvod u inzenjerstvo", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 3, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "uur", Name = "Uvod u racunarstvo", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 1, Semester = 2, ESPB = 3, IsSoftDeleted = false };
 
             //2 god
-            yield return new { Id = ++i, Uid = "aor", Name = "Arhitektura i organizacija racunara", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "baze", Name = "Baze Podataka", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "digitalelekt", Name = "Digitalna elektronika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1,ESPB = 5 };
-            yield return new { Id = ++i, Uid = "diskrmat", Name = "Diskretna matematika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 5 };
-            yield return new { Id = ++i, Uid = "logproj", Name = "Logicko projektovanje", CourseType = CourseType.Elective, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 2, ESPB = 5 };
-            yield return new { Id = ++i, Uid = "mmur", Name = "Matematicki metodi u racunarstvu", CourseType = CourseType.Elective, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "oop", Name = "Objektno orijentisano programiranje", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "pj", Name = "Programski jezici", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "strukture", Name = "Strukture Podataka", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "rs", Name = "Racunarski Sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "tg", Name = "Teorija grafova", CourseType = CourseType.Elective, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "statistika", Name = "Verovatnoca i statistika", CourseType = CourseType.Elective, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 2, ESPB = 6 };
+            yield return new { Id = ++i, Uid = "aor", Name = "Arhitektura i organizacija racunara", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "baze", Name = "Baze Podataka", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "digitalelekt", Name = "Digitalna elektronika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1,ESPB = 5, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "diskrmat", Name = "Diskretna matematika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 5, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "logproj", Name = "Logicko projektovanje", CourseType = CourseType.Elective, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 2, ESPB = 5, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "mmur", Name = "Matematicki metodi u racunarstvu", CourseType = CourseType.Elective, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "oop", Name = "Objektno orijentisano programiranje", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "pj", Name = "Programski jezici", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "strukture", Name = "Strukture Podataka", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "rs", Name = "Racunarski Sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "tg", Name = "Teorija grafova", CourseType = CourseType.Elective, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "statistika", Name = "Verovatnoca i statistika", CourseType = CourseType.Elective, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 2, Semester = 2, ESPB = 6, IsSoftDeleted = false };
 
 
             //3god
-            yield return new { Id = ++i, Uid = "ds", Name = "Distribuirani Sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "eng1", Name = "Engleski jezik 1", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "eng2", Name = "Engleski jezik 2", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "is", Name = "Informacioni sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "mkis", Name = "Mikroracunarski sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "ooproj", Name = "Objektno orijentisano projektovanje", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "mreze", Name = "Racunarske mreze", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "sitemibaza", Name = "Sistemi baza podataka", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "softversko", Name = "Softversko inzenjerstvo", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "webprog", Name = "Web programiranje", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester =2, ESPB = 6 };
+            yield return new { Id = ++i, Uid = "ds", Name = "Distribuirani Sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "eng1", Name = "Engleski jezik 1", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "eng2", Name = "Engleski jezik 2", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "is", Name = "Informacioni sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "mkis", Name = "Mikroracunarski sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "ooproj", Name = "Objektno orijentisano projektovanje", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "mreze", Name = "Racunarske mreze", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "sitemibaza", Name = "Sistemi baza podataka", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "softversko", Name = "Softversko inzenjerstvo", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester = 2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "webprog", Name = "Web programiranje", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 3, Semester =2, ESPB = 6, IsSoftDeleted = false };
 
             //4 god
 
-            yield return new { Id = ++i, Uid = "npbaze", Name = "Napredne baze podataka", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "ps", Name = "Paralelni sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "pprevodioci", Name = "Programski prevodioci", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 1, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "grafika", Name = "Racunarska grafika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "vestacka", Name = "Vestacka inteligencija", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester =2, ESPB = 6 };
-            yield return new { Id = ++i, Uid = "zastita", Name = "Zastita informacija", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 1, ESPB = 6 };
+            yield return new { Id = ++i, Uid = "npbaze", Name = "Napredne baze podataka", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "ps", Name = "Paralelni sistemi", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "pprevodioci", Name = "Programski prevodioci", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 1, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "grafika", Name = "Racunarska grafika", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "vestacka", Name = "Vestacka inteligencija", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester =2, ESPB = 6, IsSoftDeleted = false };
+            yield return new { Id = ++i, Uid = "zastita", Name = "Zastita informacija", CourseType = CourseType.Mandatory, StudyType = StudyType.BachelorStudies, LecturerId = 2, StudyYear = 4, Semester = 1, ESPB = 6, IsSoftDeleted = false };
         }
     }
 }

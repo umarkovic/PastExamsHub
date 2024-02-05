@@ -19,6 +19,7 @@ namespace PastExamsHub.Core.Domain.Entities
         public int StudyYear { get; set; }
         public int  Semester { get; set; }
         public int ESPB { get; set; }
+        public bool IsSoftDeleted { get; set; }
 
         public Course()
         {
@@ -40,6 +41,7 @@ namespace PastExamsHub.Core.Domain.Entities
             StudyYear = year;
             Semester = semester;
             ESPB = espb;
+            IsSoftDeleted = false;
         }
 
 

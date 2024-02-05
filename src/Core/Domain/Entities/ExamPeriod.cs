@@ -15,6 +15,7 @@ namespace PastExamsHub.Core.Domain.Entities
         public DateTime EndDate { get; set; }
         public ExamPeriodType PeriodType { get; set; }
         public ICollection<ExamPeriodExam> Exams { get; set; }
+        public bool IsSoftDeleted { get; set; }
 
         public ExamPeriod(string name, DateTime startDate, DateTime endDate, ExamPeriodType periodType)
         {
@@ -24,12 +25,14 @@ namespace PastExamsHub.Core.Domain.Entities
             EndDate = endDate;
             PeriodType = periodType;
             Exams = new List<ExamPeriodExam>();
+            IsSoftDeleted = false;
         }
 
         public ExamPeriod()
         {
             Uid = Guid.NewGuid().ToString();
             Exams = new List<ExamPeriodExam>();
+            IsSoftDeleted = false;
         }
 
 

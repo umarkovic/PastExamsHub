@@ -35,7 +35,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
                 from c in QueryBuilder.GetQuery(request.SearchText)
                 join u in DbContext.Users on c.Lecturer.Id equals u.Id into u_join
                 from _u in u_join.DefaultIfEmpty()
-                where (request.StudyYear== null|| c.StudyYear == request.StudyYear)
+                where (request.StudyYear== null|| c.StudyYear == request.StudyYear) &&
+                c.IsSoftDeleted ==false
                 select new CourseModel
                 {
                     Uid = c.Uid,

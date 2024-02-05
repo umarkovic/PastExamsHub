@@ -7,6 +7,7 @@ using PastExamsHub.Core.Domain.Entities;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
+using PastExamsHub.Base.Domain.Enums;
 
 namespace PastExamsHub.Core.Infrastructure.Persistence.Repositories
 {
@@ -24,10 +25,20 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Repositories
         }
         public override IQueryable<User> GetQuery()
         {
-
             //double check
             return base.GetQuery();
 
+        }
+
+        public int GetStudentsCount()
+        {
+            return base.GetQuery().Where(x => x.Role == RoleType.Student).Count();
+        }
+
+
+        public int GetTeachersCount()
+        {
+            return base.GetQuery().Where(x=>x.Role==RoleType.Teacher).Count();
         }
     }
 }

@@ -19,6 +19,8 @@ namespace PastExamsHub.Core.Domain.Entities
         public int NumberOfTasks { get; set; }
         public string Notes { get; set; }
 
+        public bool IsSoftDeleted { get; set; }
+
 
         public Exam()
         {
@@ -36,6 +38,7 @@ namespace PastExamsHub.Core.Domain.Entities
             NumberOfTasks = numberOfTasks;
             CreatedDateTimeUtc = DateTime.UtcNow;
             Notes = notes;
+            IsSoftDeleted = false;
         }
     }
 }

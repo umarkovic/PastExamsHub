@@ -34,6 +34,7 @@ namespace PastExamsHub.Core.Application.Exams.Queries.GetCollection
             var query = ExamsRepository
                 .GetQuery()
                 .OrderByDescending(x=>x.ExamDate)
+                .Where(x=>x.IsSoftDeleted==false)
                 .Select(e => new ExamModel
                 {
                     CourseUid = e.Course.Uid,

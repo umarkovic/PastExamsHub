@@ -10,5 +10,6 @@ namespace PastExamsHub.Core.Application.Common.Interfaces
 {
     public interface IExamsRepository : IBaseRepository<Exam>
     {
+        int GetExamsCount();
     }
 }
