@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B6A659CD-9038-45AE-BAB4-50848006259E}"
 	ProjectSection(SolutionItems) = preProject
 		docs\ca-sln.md = docs\ca-sln.md
+		data_script.sql = data_script.sql
 		docker.md = docker.md
 		docs\ef.md = docs\ef.md
 		docs\nswag.md = docs\nswag.md

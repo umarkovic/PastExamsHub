@@ -9,7 +9,7 @@ namespace PastExamsHub.Core.Domain.Enums
     public enum GenderType
     {
         Unknown = 0,
-        Male = 1,
-        Female = 2
+        Musko = 1,
+        Zensko = 2
     }
 }

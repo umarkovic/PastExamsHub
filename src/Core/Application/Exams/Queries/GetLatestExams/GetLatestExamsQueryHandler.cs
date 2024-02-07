@@ -40,7 +40,7 @@ namespace PastExamsHub.Core.Application.Exams.Queries.GetLatestExams
                     Uid = e.Uid,
                     CourseName = e.Course.Name,
                     CreatedDateTimeUtc = e.CreatedDateTimeUtc,
-                    ExamPeriodName = e.Period.Name
+                    ExamPeriodName = e.Period.Name + " - " + e.Type.ToString()
 
                 })
                 .OrderByDescending(x=>x.CreatedDateTimeUtc)

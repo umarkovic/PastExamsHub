@@ -10,15 +10,14 @@ namespace PastExamsHub.Core.Domain.Enums
     {
         //TODO: delete
         Unknown= 0,
-        January = 1,
+        Januar = 1,
         April = 2,
-        June =3,
-        June2=4,
-        September = 5,
-        October = 6,
-        October2 = 7,
-        December = 8
-
+        Jun =3,
+        Jun2=4,
+        Septembar = 5,
+        Oktobar = 6,
+        Oktobar2 = 7,
+        Decembar = 8
 
     }
 }

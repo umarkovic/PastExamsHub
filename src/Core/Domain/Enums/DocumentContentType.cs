@@ -10,6 +10,6 @@ namespace PastExamsHub.Core.Domain.Enums
     {
         Unknown = 0,
         PDF = 1,
-        Image = 2
+        Slika = 2
     }
 }
