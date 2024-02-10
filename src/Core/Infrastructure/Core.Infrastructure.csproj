@@ -23,6 +23,7 @@
     <Folder Include="Persistence\Configurations\" />
     <Folder Include="Persistence\Migrations\" />
     <Folder Include="Persistence\Maintance\" />
+    <Folder Include="Persistence\Migrations\CoreDb\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

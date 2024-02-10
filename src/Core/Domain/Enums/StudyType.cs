@@ -9,8 +9,8 @@ namespace PastExamsHub.Core.Domain.Enums
     public enum StudyType
     {
         Unknown = 0,
-        BachelorStudies = 1,
-        GraduateStudies = 2,
-        PhDStudies = 3
+        OsnovneAkademskeStudije = 1,
+        MasterStudije = 2,
+        DoktorskeStudije = 3
     }
 }

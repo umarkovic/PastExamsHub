@@ -13,6 +13,8 @@ namespace PastExamsHub.Core.Application.Courses.Models
         public string Uid { get; set; }
         public string Name { get; set; }
         public CourseType CourseType { get; set; }
+        public StudyType StudyType { get; set; }
+        public string LecturerUid { get; set; }   
         public string LecturerFirstName { get; set; }
         public string LecturerLastName { get; set; }
         public int StudyYear { get; set; }

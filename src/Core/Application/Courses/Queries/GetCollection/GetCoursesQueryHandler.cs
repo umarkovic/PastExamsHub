@@ -46,6 +46,7 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
                     LecturerFirstName = _u != null ? _u.FirstName : "/",
                     LecturerLastName = _u != null ? _u.LastName : "/",
                     CourseType = c.CourseType,
+                    StudyType = c.StudyType
 
                 }
                 );
