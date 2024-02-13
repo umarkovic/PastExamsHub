@@ -41,7 +41,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetSingle
                     LecturerFirstName = c.Lecturer.FirstName,
                     LecturerLastName = c.Lecturer.LastName,
                     CourseType = c.CourseType,
-                    Semester = c.Semester
+                    Semester = c.Semester,
+                    LecturerUid = c.Lecturer.Uid
                 })
                 .SingleOrDefaultAsync(cancellationToken);
 

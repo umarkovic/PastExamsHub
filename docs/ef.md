@@ -33,7 +33,7 @@ dotnet ef migrations add AddsFullTextSearch --context CoreDbContext --output-dir
 dotnet ef migrations add AddsExamSolutionTable --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
 
 dotnet ef migrations add ExpandEnttitiesWithIsSoftDeleted --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
-
+dotnet ef migrations add InitialMigraiton --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
 [READING]
 https://www.entityframeworktutorial.net/efcore/cli-commands-for-ef-core-migration.aspx
 

@@ -9,7 +9,7 @@ namespace PastExamsHub.Core.Domain.Enums
     public enum CourseType
     {
         Unknown = 0,
-        Mandatory = 1,
-        Elective= 2
+        Obavezni = 1,
+        Izborni= 2
     }
 }

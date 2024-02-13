@@ -36,7 +36,7 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Create
 
             Course course = new Course(command.Name, command.CourseType, command.StudyYear, command.ESPB, command.Semester);
             course.Lecturer = lecturer;
-            course.StudyType = StudyType.BachelorStudies; //COMPLETE: change this later
+            course.StudyType = StudyType.OsnovneAkademskeStudije; //COMPLETE: change this later
 
             CoursesRepository.Insert(course);
 

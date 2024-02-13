@@ -9,8 +9,8 @@ namespace PastExamsHub.Core.Domain.Enums
     public enum ExamType
     {
         Unkwnon = 0,
-        Written = 1,
-        Theory =2,
-        WrittenAndTheory = 3
+        Pismeni = 1,
+        Usmeni =2,
+        PismenoUsmeni = 3
     }
 }
