@@ -18,6 +18,7 @@ using IdentityServer4.Hosting;
 using IdentityServer4.ResponseHandling;
 using PastExamsHub.Authority.Infrastructure.Identity;
 using PastExamsHub.Base.Domain.Common;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PastExamsHub.Authority.Infrastructure
 {
@@ -93,7 +94,7 @@ namespace PastExamsHub.Authority.Infrastructure
                     options.EnableTokenCleanup = true;
                     options.TokenCleanupInterval = 30;
                 })
-                .AddSigninCredential(identityServerOptions)//IMPORTANT: custom extension method from Template.Authority.Infrastructure.Extensions
+                .AddSigningCredential(new X509Certificate2("D:\\0.Diplomski rad\\PastExamsHub_API\\src\\Authority\\Infrastructure\\Files\\cert.pfx", ""))//IMPORTANT: custom extension method from Template.Authority.Infrastructure.Extensions
                 .AddAspNetIdentity<IdentityApplicationUser>()
                 .AddJwtBearerClientAuthentication()
                 .AddProfileService<ProfileService>();

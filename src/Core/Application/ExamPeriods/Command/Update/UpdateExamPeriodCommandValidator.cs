@@ -31,7 +31,8 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Command.Update
                {
                    var program = await ExamPeriodRepository.GetByUidAsync(context.Uid, cancellation);
 
-                   if (program.Name != context.Name)
+
+                   if (program!=null && program?.Name != context.Name)
                    {
                        var names = ExamPeriodRepository
                        .GetQuery()

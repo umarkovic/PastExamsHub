@@ -35,13 +35,14 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetSingle
             var period = await ExamPeriodRepository.
                  GetQuery()
                  .Where(x => x.Uid == request.Uid)
-                 .Select(c => new ExamPeriodModel
+                 .Select(x => new ExamPeriodModel
                  {
-                     Uid = c.Uid,
-                     Name = c.Name,
-                     StartDate = c.StartDate.Date,
-                     EndDate = c.EndDate.Date,
-                     PeriodDayDuration = (c.EndDate.Date - c.StartDate.Date).Days,
+                     Uid = x.Uid,
+                     Name = x.Name,
+                     StartDate = x.StartDate.Date,
+                     EndDate = x.EndDate.Date,
+                     PeriodType = x.PeriodType,
+                     PeriodDayDuration = (x.EndDate.Date - x.StartDate.Date).Days,
                  })
                  .SingleOrDefaultAsync(cancellationToken);
 

@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +26,14 @@ namespace PastExamsHub.Authority.WebAPI
             Infrastructure.Startup.ConfigureServices(services, Configuration, Environment);
 
             base.ConfigureServices(services);
-          
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => false;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             //On MVC project if user is not authorize application try to call /login method by default
             //This code enable MVC to work line web api and return status 401 insteed to call /login method
             services.ConfigureApplicationCookie(options =>
@@ -39,10 +47,10 @@ namespace PastExamsHub.Authority.WebAPI
             });
 
             //if authority runs on http ,this enable cookie to be send across CORS domains
-            //services.ConfigureApplicationCookie(options =>
-            //{
-            //    options.Cookie.SameSite = SameSiteMode.Lax;
-            //});
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None;
+            });
 
             services.Configure<DataProtectionTokenProviderOptions>(options =>
             {
@@ -82,7 +90,18 @@ namespace PastExamsHub.Authority.WebAPI
 
             // IMPORTANT: must come between UseRouting & UseEndpoints
             // more @ https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing
-    
+
+            app.Use(async (context, next) =>
+            {
+                await next();
+
+                if (string.Compare(context.Request.Path, "/connect/authorize/callback", StringComparison.InvariantCulture) == 0)
+                {
+                    await context.SignOutAsync(IdentityConstants.ApplicationScheme);//using Microsoft.AspNetCore.Authentication
+                    Serilog.Log.Logger.Information("Signed out after authorize callback");
+                }
+            });
+
             app.UseIdentityServer();
             //If you need BaseUrlMiddleware please uncomment three line below and comment line above
             //and change "URL" to real URL that you want to use for IdentityServerURL (authority URL)

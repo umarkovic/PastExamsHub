@@ -30,12 +30,14 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
         public async Task<GetCoursesQueryResult> Handle(GetCoursesQuery request, CancellationToken cancellationToken)
         {
             //COMPLETE: Add fulltext search
+            if (request.StudyYear == 0)
+                request.StudyYear = null;
 
             var query = (
                 from c in QueryBuilder.GetQuery(request.SearchText)
                 join u in DbContext.Users on c.Lecturer.Id equals u.Id into u_join
                 from _u in u_join.DefaultIfEmpty()
-                where (request.StudyYear== 0|| c.StudyYear == request.StudyYear) &&
+                where (request.StudyYear== null || c.StudyYear == request.StudyYear) &&
                 c.IsSoftDeleted ==false
                 select new CourseModel
                 {
@@ -43,10 +45,12 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
                     Name = c.Name,
                     StudyYear =c.StudyYear,
                     ESPB = c.ESPB,
+                    LecturerUid =  _u != null ? _u.Uid : null,
                     LecturerFirstName = _u != null ? _u.FirstName : "/",
                     LecturerLastName = _u != null ? _u.LastName : "/",
                     CourseType = c.CourseType,
-                    StudyType = c.StudyType
+                    StudyType = c.StudyType,
+                    Semester = c.Semester
 
                 }
                 );
