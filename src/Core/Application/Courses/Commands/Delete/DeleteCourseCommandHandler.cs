@@ -16,10 +16,10 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Delete
     {
 
         readonly ICoreDbContext DbContext;
-        readonly IBaseRepository<Course> CourseRepository;
+        readonly ICoursesRepository CourseRepository;
         public DeleteCourseCommandHandler
         (
-            IBaseRepository<Course> courseRepository,
+            ICoursesRepository courseRepository,
             ICoreDbContext dbContext
 
         )
