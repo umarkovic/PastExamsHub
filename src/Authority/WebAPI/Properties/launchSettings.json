@@ -17,7 +17,7 @@
         "DOTNET_ENVIRONMENT": "Development"
       }
     },
-    "PastExamsHub.Authority.WebAPI": {
+    "GoatSports.Authority.WebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "",
