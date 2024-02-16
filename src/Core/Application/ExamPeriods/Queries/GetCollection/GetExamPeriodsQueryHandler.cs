@@ -36,6 +36,7 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
                     StartDate = ep.StartDate.Date,
                     EndDate = ep.EndDate.Date,
                     PeriodDayDuration = (ep.EndDate.Date - ep.StartDate.Date).Days,
+                    PeriodType = ep.PeriodType
                 }
                 );
 

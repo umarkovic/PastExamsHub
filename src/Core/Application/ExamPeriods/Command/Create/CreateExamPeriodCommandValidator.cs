@@ -20,8 +20,28 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Command.Create
         {
             ExamPeriodRepository = examPeriodRepository;
 
+
             RuleFor(x => x.EndDate)
-                .GreaterThan(x => x.StartDate);
+                .Cascade(CascadeMode.Stop)
+                .NotEmpty()
+                .NotNull()
+                .WithMessage("Polje za završetak roka je obavezno!");
+
+
+            RuleFor(x => x.StartDate)
+               .Cascade(CascadeMode.Stop)
+               .NotEmpty()
+               .NotNull()
+               .WithMessage("Polje za završetak roka je obavezno!");
+
+            RuleFor(x => x.EndDate)
+                .Cascade(CascadeMode.Stop)
+                .GreaterThan(x => x.StartDate).WithMessage("Datum završetka roka mora biti veći od datuma početka.");
+
+
+            RuleFor(x => x.StartDate)
+               .Cascade(CascadeMode.Stop)
+               .LessThan(x => x.EndDate).WithMessage("Datum početka roka mora biti manji od datuma završetka.");
 
 
             RuleFor(x => x.Name)
@@ -38,7 +58,7 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Command.Create
 
                }).When(x => x.Name != null)
 
-            .WithMessage("Exam period name already exist.");
+            .WithMessage("Ispitni rok već postoji.");
 
         }
     }

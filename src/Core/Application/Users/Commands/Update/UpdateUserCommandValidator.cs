@@ -14,6 +14,7 @@ namespace PastExamsHub.Core.Application.Users.Commands.Update
         {
             RuleFor(x => x.FirstName)
                 .NotEmpty();
+
             RuleFor(x => x.LastName)
                 .NotEmpty();
         }

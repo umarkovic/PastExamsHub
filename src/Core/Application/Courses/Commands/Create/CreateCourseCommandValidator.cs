@@ -14,12 +14,26 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Create
         {
             RuleFor(x => x.Name)
                 .NotEmpty();
+
+
+            RuleFor(x => x.Name)
+              .Cascade(CascadeMode.Stop)
+              .NotEmpty()
+              .NotNull()
+              .WithMessage("Polje za unos imena je obavezno!");
+
+
             RuleFor(x => x.StudyYear)
-                .NotEmpty();
+              .Cascade(CascadeMode.Stop)
+              .NotEmpty()
+              .NotNull()
+              .WithMessage("Polje za unos imena je obavezno!!");
 
             RuleFor(x => x.LecturerUid)
-                .NotNull()
-                .NotEmpty();
+               .Cascade(CascadeMode.Stop)
+               .NotEmpty()
+               .NotNull()
+               .WithMessage("Polje za unos imena je obavezno!!");
         }
     }
 }

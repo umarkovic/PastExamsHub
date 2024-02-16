@@ -42,13 +42,25 @@ namespace PastExamsHub.Core.Application.Users.Commands.SignIn
         public async Task Handle(SignInCommand command, CancellationToken cancellationToken)
         {
             //Handler for users login 
-            var currentUser = CurrentUserService;
+            var currentUser = CurrentUserService.ApplicationUser;
             var user = await UsersRepository.GetByEmailAsync(command.Email, cancellationToken);
 
             if(user == null)
             {
-                //COMPLETE: Finisih after introducing CurrentUserService working
-                //COMPLETE: Handle creation of teachers
+                    user = new User
+                    {
+                        Uid = CurrentUserService.UserUid,
+                        Email = CurrentUserService.ApplicationUser.Email,
+                        FirstName = CurrentUserService.ApplicationUser.FirstName,
+                        LastName = CurrentUserService.ApplicationUser.LastName,
+                        FullName = CurrentUserService.ApplicationUser.FirstName + " " + CurrentUserService.ApplicationUser.LastName,
+                        Role = CurrentUserService.ApplicationUser.Role
+
+                    };
+
+                    UsersRepository.Insert(user);
+                    await DbContext.SaveChangesAsync(cancellationToken);
+                
             }
 
         }
