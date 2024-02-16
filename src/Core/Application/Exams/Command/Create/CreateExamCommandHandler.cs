@@ -5,6 +5,7 @@ using PastExamsHub.Base.Application.Common.Exceptions;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Core.Application.Common.Interfaces;
 using PastExamsHub.Core.Domain.Entities;
+using PastExamsHub.Core.Domain.Enums;
 using SixLabors.ImageSharp;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.XPath;
+using Throw;
 
 namespace PastExamsHub.Core.Application.Exams.Command.Create
 {
@@ -23,12 +25,14 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
         readonly ICoreDbContext DbContext;
         readonly IBaseRepository<ExamPeriod> ExamPeriodRepository;
         readonly IBaseRepository<ExamPeriodExam> ExamPeriodExamRepository;
+        readonly IFilesRepository DocumentRepository;
         readonly IExamsRepository ExamRepository;
         readonly ICoursesRepository CoursesRepository;
         public CreateExamCommandHandler
         (
             IBaseRepository<ExamPeriod> examPeriodRepository,
             IBaseRepository<ExamPeriodExam> examPeriodExamRepository,
+            IFilesRepository documentRepository,
             IExamsRepository examRepository,
             ICoursesRepository coursesRepository,
             ICoreDbContext dbContext
@@ -37,12 +41,15 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
         {
             ExamPeriodRepository = examPeriodRepository;
             ExamPeriodExamRepository = examPeriodExamRepository;
+            DocumentRepository = documentRepository;
             ExamRepository = examRepository;
             CoursesRepository = coursesRepository;
             DbContext = dbContext;
         }
         public async Task<CreateExamCommandResult> Handle ( CreateExamCommand command, CancellationToken cancellationToken)
         {
+            command.PeriodUid.ThrowIfNull();
+            command.CourseUid.ThrowIfNull();
 
             var validationFailures = new List<ValidationFailure>();
 
@@ -54,6 +61,12 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
                 .Where(x=>x.Uid==command.PeriodUid)
                 .SingleOrDefaultAsync();
 
+            if (examPeriod==null)
+            {
+                validationFailures.Add(new ValidationFailure("Uid", "Exam period not found"));
+                var validationResult = new ValidationResult(validationFailures);
+                throw new ValidationException(validationResult.Errors);
+            }
 
             var existingExxamCourseName = await(
                 from ep in DbContext.ExamPeriods
@@ -66,17 +79,18 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
 
             #region Validations
 
+
             if (!string.IsNullOrEmpty(existingExxamCourseName))
             {
                 validationFailures.Add(new ValidationFailure("Uid", "Exam with course: " + existingExxamCourseName + " already exist in "+examPeriod.Name +" period." ));
             }
 
-            if (command.ExamDate <= examPeriod.StartDate)
+            if (command.ExamDate <= examPeriod?.StartDate)
             {
                 validationFailures.Add(new ValidationFailure("ExamDate", "Exam date must be greather than period start date : " + examPeriod.StartDate+"."));
             }
 
-            if (command.ExamDate >= examPeriod.EndDate)
+            if (command.ExamDate >= examPeriod?.EndDate)
             {
                 validationFailures.Add(new ValidationFailure("ExamDate", "Exam date must be less than period end date : " + examPeriod.EndDate+".")); ;
             }
@@ -88,6 +102,8 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
                 throw new ValidationException(validationResult.Errors);
             }
             #endregion Validations
+
+
 
 
             try
@@ -118,7 +134,18 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
                     {
                         file.CopyTo(stream);
                     }
+
+
+                    var document = new Domain.Entities.File();
+                    document.FileName = fileName;
+                    document.FilePath = dbPath;
+                    document.Type = imageExtensions.Contains(extension) ? FileType.Image : FileType.Document;
+
+                    DocumentRepository.Insert(document);
+                        
+                    
                 }
+ 
                 else
                 {
                     validationFailures.Add(new ValidationFailure("FileUpload", "No files selected ( File length = 0)"));
@@ -141,13 +168,6 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             examPeriod.Exams.Add(examPeriodExam);
 
             ExamPeriodRepository.Update(examPeriod);
-            //COMPLETE: add document
-
-
-            
-
-
-            // ExamPeriodExamRepository.Insert(examPeriodExam);
             await DbContext.SaveChangesAsync(cancellationToken);
 
 

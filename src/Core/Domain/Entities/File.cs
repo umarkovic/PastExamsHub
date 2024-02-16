@@ -1,24 +1,30 @@
 ﻿using PastExamsHub.Base.Domain.Common;
+using PastExamsHub.Core.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.IO.Enumeration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PastExamsHub.Core.Domain.Entities
 {
-    public class Document : DomainEntity
+    public class File : DomainEntity
     {
         public string FileName { get; set; }
-        public byte[] Content { get; set; }
-        public string ContentType { get; set; }
+        public string FilePath { get; set; }
+        public FileType Type { get; set; }
 
-        // Method to save the document
-        public void SaveDocument(byte[] content, string fileName, string contentType)
+        public File()
         {
-            Content = content;
+            Uid = Guid.NewGuid().ToString();
+        }
+        // Method to save the document
+        public void SaveDocument(string fileName, string filePath, FileType contentType)
+        {
             FileName = fileName;
-            ContentType = contentType;
+            FilePath = filePath;
+            Type = contentType;
         }
 
         // Method to render the document as a PDF
@@ -51,13 +57,13 @@ namespace PastExamsHub.Core.Domain.Entities
         }
 
         // Method to display an image
-        public string GetImageSrc()
-        {
+        //public string GetImageSrc()
+        //{
             // For displaying images in HTML, you can convert the byte array to a base64 string
             // This assumes Content contains the bytes of an image file
 
-            string base64 = Convert.ToBase64String(Content);
-            return string.Format("data:{0};base64,{1}", ContentType, base64);
-        }
+        //    string base64 = Convert.ToBase64String(Content);
+        //    return string.Format("data:{0};base64,{1}", ContentType, base64);
+        //}
     }
 }

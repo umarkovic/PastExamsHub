@@ -24,14 +24,18 @@ namespace PastExamsHub.Core.Application.Exams.Models
         
         public ExamType Type { get; set; }
         public DateTime ExamDate { get; set; }
-
-        // public Document Document { get; set; }
         public int NumberOfTasks { get; set; }
         public string Notes { get; set; }
+
+        //Period
+
         public string PeriodUid { get; set; }
         public ExamPeriodModel ExamPeriod { get; set; }
-        //Period
-     
+
+
+        //File
+        public FileType FileType { get; set; }
+        public byte[] File { get; set; }
 
 
     }

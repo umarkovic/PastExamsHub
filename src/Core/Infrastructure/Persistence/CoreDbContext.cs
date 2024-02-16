@@ -30,6 +30,7 @@ namespace PastExamsHub.Core.Infrastructure.Persistence
         public DbSet<ExamPeriod> ExamPeriods { get; set; }
         public DbSet<ExamPeriodExam> ExamPeriodExam { get; set; }
         public DbSet<ExamSolution> ExamSolutions { get; set; }
+        public DbSet<File> Files { get; set; }
 
         #endregion Tables
         public CoreDbContext

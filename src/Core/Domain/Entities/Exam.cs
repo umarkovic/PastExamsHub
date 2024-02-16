@@ -12,7 +12,7 @@ namespace PastExamsHub.Core.Domain.Entities
     {
         public Course Course { get; set; }
         public ExamPeriod Period { get; set; }
-        public Document Document { get; set; }
+        public File Document { get; set; }
         public ExamType Type { get; set; }
         public DateTime ExamDate { get; set; }
         public DateTime CreatedDateTimeUtc { get; set; }
@@ -27,7 +27,7 @@ namespace PastExamsHub.Core.Domain.Entities
             Uid = Guid.NewGuid().ToString();
         }
 
-        public Exam(Course course, ExamPeriod period, Document document, ExamType type, DateTime examDate, int numberOfTasks, string notes)
+        public Exam(Course course, ExamPeriod period, File document, ExamType type, DateTime examDate, int numberOfTasks, string notes)
         {
             Uid = Guid.NewGuid().ToString();
             Course = course;

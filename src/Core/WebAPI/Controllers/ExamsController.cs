@@ -10,6 +10,7 @@ using PastExamsHub.Core.Application.ExamPeriods.Queries.GetSingle;
 using PastExamsHub.Core.Application.Exams.Command.Create;
 using PastExamsHub.Core.Application.Exams.Queries.GetCollection;
 using PastExamsHub.Core.Application.Exams.Queries.GetLatestExams;
+using PastExamsHub.Core.Application.Exams.Queries.GetSingle;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -42,7 +43,7 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [HttpPost("upload")]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
-        public async Task<ActionResult<CreateExamCommandResult>> Create([FromForm] CreateExamCommand command)
+        public async Task<ActionResult<CreateExamCommandResult>> Create([FromQuery] CreateExamCommand command)
         {
             var result = await Mediator.Send(command);
 
@@ -59,15 +60,15 @@ namespace PastExamsHub.Core.WebAPI.Controllers
 
             return Ok(result);
         }
-        //[HttpGet("{uid}")]
-        //[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
-        //public async Task<ActionResult<GetExamPeriodQueryResult>> GetSingle(string uid, [FromQuery] GetExamPeriodQuery request)
-        //{
-        //    request.Uid = WebUtility.UrlDecode(uid);
-        //    var result = await Mediator.Send(request);
+        [HttpGet("{uid}")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public async Task<ActionResult<GetExamQueryResult>> GetSingle(string uid, [FromQuery] GetExamQuery request)
+        {
+            request.Uid = WebUtility.UrlDecode(uid);
+            var result = await Mediator.Send(request);
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
         //[HttpPut("{uid}")]
         //[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
