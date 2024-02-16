@@ -24,6 +24,8 @@
     <Folder Include="Persistence\Migrations\" />
     <Folder Include="Persistence\Maintance\" />
     <Folder Include="Persistence\Migrations\CoreDb\" />
+    <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\Documents\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

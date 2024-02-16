@@ -5,12 +5,16 @@ using PastExamsHub.Base.Application.Common.Exceptions;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Core.Application.Common.Interfaces;
 using PastExamsHub.Core.Domain.Entities;
+using SixLabors.ImageSharp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace PastExamsHub.Core.Application.Exams.Command.Create
 {
@@ -85,8 +89,51 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             }
             #endregion Validations
 
+
+            try
+            {
+                var file = command.File;
+
+                string imageFolder = Path.Combine("..", "Infrastructure", "Resources", "Images");
+                string documentFolder = Path.Combine("..", "Infrastructure", "Resources", "Documents");
+
+
+                var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+                var imageExtensions = new List<string> { ".png", ".jpg" };
+                var documentExtensions = new List<string> { ".pdf", ".docx", ".txt" };
+
+                string folderName = imageExtensions.Contains(extension) ? imageFolder :
+                                        documentExtensions.Contains(extension) ? documentFolder :
+                                        throw new NotSupportedException("Unsupported file type.");
+
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                if (file.Length > 0)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                }
+                else
+                {
+                    validationFailures.Add(new ValidationFailure("FileUpload", "No files selected ( File length = 0)"));
+                    var validationResult = new ValidationResult(validationFailures);
+                    throw new ValidationException(validationResult.Errors);
+                }
+            }
+            catch (Exception ex)
+            {
+                validationFailures.Add(new ValidationFailure("FileUpload", "Something went wrong from file upload"));
+                var validationResult = new ValidationResult(validationFailures);
+                throw new ValidationException(validationResult.Errors);
+            }
+
             var course = await CoursesRepository.GetByUidAsync(command.CourseUid, cancellationToken);
-            //COMPLETE: add document
             var exam = new Exam(course, examPeriod, null, command.Type, command.ExamDate, command.NumberOfTasks, command.Notes);
             ExamRepository.Insert(exam);
 
@@ -94,8 +141,13 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             examPeriod.Exams.Add(examPeriodExam);
 
             ExamPeriodRepository.Update(examPeriod);
+            //COMPLETE: add document
 
-           // ExamPeriodExamRepository.Insert(examPeriodExam);
+
+            
+
+
+            // ExamPeriodExamRepository.Insert(examPeriodExam);
             await DbContext.SaveChangesAsync(cancellationToken);
 
 
