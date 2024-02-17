@@ -14,6 +14,7 @@ namespace PastExamsHub.Core.Domain.Entities
         public string FileName { get; set; }
         public string FilePath { get; set; }
         public FileType Type { get; set; }
+        public bool IsSolution { get; set; }
 
         public File()
         {

@@ -61,9 +61,26 @@ namespace PastExamsHub.Authority.Infrastructure.Persistence
             SeedRole(builder, RoleType.Student);
             SeedRole(builder, RoleType.Teacher);
 
-            SeedUser(builder, "Administrator", "System", "administrator@localhost", "Administrator1!", RoleType.Admin);
-            SeedUser(builder, "Uros", "Markovic", "umarkovic864@gmail.com", "Administrator1!", RoleType.Student);
-            SeedUser(builder, "Valentina", "Nejkovic", "valenejkovic@gmail.com", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "admin", "Administrator", "System", "administrator@localhost", "Administrator1!", RoleType.Admin);
+            SeedUser(builder, "profesor", "Profesor", "Elfakovic", "profesor@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorDragan", "Dragan", "Stojanovic", "profesorDragan@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "pprofesorAleksandar", "Aleksandar", "Stanimirovic", "profesorAleksandar@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorEmina", "Emina", "Milovanovic", "profesorEmina@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorVladimir", "Vladimir", "Simic", "profesorVladimir@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorIvan", "Ivan", "Petkovic", "profesorIvan@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorMarija", "Marija", "Veljanovski", "profesorMarija@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorIgor", "Igor", "Antolovic", "profeosrIgor@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorNikola", "Nikola", "Davidovic", "profesorNikola@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorNatalija", "Natalija", "Stojanovic", "profeosrNatalija@localhost", "Administrator1!", RoleType.Teacher);
+            SeedUser(builder, "profesorAleksandra", "Aleksandra", "Stojnev", "profesorAleksandra@localhost", "Administrator1!", RoleType.Teacher);
+
+            SeedUser(builder, "studentUros", "Uros", "Markovic", "studentUros@localhost", "Administrator1!", RoleType.Student);
+            SeedUser(builder, "studentPetar", "Petar", "Maravic", "studentPetar@localhost", "Administrator1!", RoleType.Student);
+            SeedUser(builder, "studentVladimir", "Vladimir", "Milosevic", "studentVladimir@localhost", "Administrator1!", RoleType.Student);
+            SeedUser(builder, "studentAndrija", "Andrija", "Radosavljevic", "studentAndrija@localhost", "Administrator1!", RoleType.Student);
+            SeedUser(builder, "studentSara", "Sara", "Stojanovic", "studentSara@localhost", "Administrator1!", RoleType.Student);
+            SeedUser(builder, "studentMilan", "Milan", "Stojanovic", "studentMilan@localhost", "Administrator1!", RoleType.Student);
+            SeedUser(builder, "studentDanilo", "Danilo", "Markovic", "studentDanilo@localhost", "Administrator1!", RoleType.Student);
         }
 
         void SeedRole(ModelBuilder builder, RoleType roleType)
@@ -78,11 +95,11 @@ namespace PastExamsHub.Authority.Infrastructure.Persistence
         }
 
         int IdentityUserClaim_Id = 0;
-        void SeedUser(ModelBuilder builder, string firstName, string lastName, string adminEmail, string adminPassword, RoleType roleType)
+        void SeedUser(ModelBuilder builder, string uid , string firstName, string lastName, string adminEmail, string adminPassword, RoleType roleType)
         {
             var user = new IdentityApplicationUser
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = uid,
                 UserName = adminEmail,
                 NormalizedUserName = adminEmail.ToUpperInvariant(),
                 Email = adminEmail,

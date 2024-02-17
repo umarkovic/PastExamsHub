@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Commands.Create
         public string ExamUid { get; set; }
         public string Comment { get; set; }
         public int? TaskNumber { get; set; }
-
-        //public byte[] Document { get; set; }
+        public IFormFile File { get; set; }
 
     }
 }

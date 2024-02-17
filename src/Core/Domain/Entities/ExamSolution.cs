@@ -16,10 +16,10 @@ namespace PastExamsHub.Core.Domain.Entities
         public ExamPeriodType PeriodType { get; set; }
         public DateTime CreatedDateTimeUtc { get; set; }
         public int? TaskNumber { get; set; }
-        public File Document { get; set; }
+        public File File { get; set; }
         public int GradeCount { get; set; }
+        public int Grade { get; set; }
         public bool IsSoftDeleted { get; set; }
-
 
     }
 }

@@ -15,6 +15,7 @@ namespace PastExamsHub.Core.Application.Common.Interfaces
         DbSet<ExamPeriod> ExamPeriods { get; set; }
         DbSet<ExamPeriodExam> ExamPeriodExam { get; set; }
         DbSet<ExamSolution> ExamSolutions { get; set; }
+        DbSet<ExamSolutionGrade> ExamSolutionGrades { get; set; }
         DbSet<File> Files { get; set; }
         
         

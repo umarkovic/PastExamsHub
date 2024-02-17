@@ -64,7 +64,8 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
 
                 }).ToListAsync();
 
-            //COMPLETE: Add grade calculation for exam soultions
+            //COMPLETE: Add grade calculation for exam soultions in ExamSolutions
+            //COMPLETE: add for each row, IsGradePosted by checking currentUserUid if exist in ExamSolutionGrade table
 
             return new GetExamSolutionsQueryResult
             {

@@ -34,9 +34,10 @@ namespace PastExamsHub.Core.WebAPI.Controllers
 
 
 
-        [HttpPost]
+        [HttpPost("upload")]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
-        public async Task<ActionResult<CreateExamSolutionCommandResult>> Create(CreateExamSolutionCommand command)
+        [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
+        public async Task<ActionResult<CreateExamSolutionCommandResult>> Create([FromQuery] CreateExamSolutionCommand command)
         {
             var result = await Mediator.Send(command);
 
