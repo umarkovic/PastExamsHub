@@ -25,14 +25,14 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
         readonly ICoreDbContext DbContext;
         readonly IBaseRepository<ExamPeriod> ExamPeriodRepository;
         readonly IBaseRepository<ExamPeriodExam> ExamPeriodExamRepository;
-        readonly IFilesRepository DocumentRepository;
+        readonly IFilesRepository FileRepository;
         readonly IExamsRepository ExamRepository;
         readonly ICoursesRepository CoursesRepository;
         public CreateExamCommandHandler
         (
             IBaseRepository<ExamPeriod> examPeriodRepository,
             IBaseRepository<ExamPeriodExam> examPeriodExamRepository,
-            IFilesRepository documentRepository,
+            IFilesRepository fileRepository,
             IExamsRepository examRepository,
             ICoursesRepository coursesRepository,
             ICoreDbContext dbContext
@@ -41,7 +41,7 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
         {
             ExamPeriodRepository = examPeriodRepository;
             ExamPeriodExamRepository = examPeriodExamRepository;
-            DocumentRepository = documentRepository;
+            FileRepository = fileRepository;
             ExamRepository = examRepository;
             CoursesRepository = coursesRepository;
             DbContext = dbContext;
@@ -104,7 +104,7 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             #endregion Validations
 
 
-
+            var examFile = new Domain.Entities.File();
 
             try
             {
@@ -136,12 +136,12 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
                     }
 
 
-                    var document = new Domain.Entities.File();
-                    document.FileName = fileName;
-                    document.FilePath = dbPath;
-                    document.Type = imageExtensions.Contains(extension) ? FileType.Image : FileType.Document;
+                    
+                    examFile.FileName = fileName;
+                    examFile.FilePath = dbPath;
+                    examFile.Type = imageExtensions.Contains(extension) ? FileType.Image : FileType.Document;
 
-                    DocumentRepository.Insert(document);
+                    FileRepository.Insert(examFile);
                         
                     
                 }
@@ -161,7 +161,7 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             }
 
             var course = await CoursesRepository.GetByUidAsync(command.CourseUid, cancellationToken);
-            var exam = new Exam(course, examPeriod, null, command.Type, command.ExamDate, command.NumberOfTasks, command.Notes);
+            var exam = new Exam(course, examPeriod, examFile, command.Type, command.ExamDate, command.NumberOfTasks, command.Notes);
             ExamRepository.Insert(exam);
 
             var examPeriodExam  = new ExamPeriodExam(examPeriod, exam);

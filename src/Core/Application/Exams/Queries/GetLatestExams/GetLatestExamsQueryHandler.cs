@@ -5,6 +5,7 @@ using PastExamsHub.Core.Application.Common.Interfaces;
 using PastExamsHub.Core.Application.ExamPeriods;
 using PastExamsHub.Core.Application.Exams.Models;
 using PastExamsHub.Core.Application.Exams.Queries.GetCollection;
+using PastExamsHub.Core.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,11 +41,11 @@ namespace PastExamsHub.Core.Application.Exams.Queries.GetLatestExams
                     Uid = e.Uid,
                     CourseName = e.Course.Name,
                     CreatedDateTimeUtc = e.CreatedDateTimeUtc,
-                    ExamPeriodName = e.Period.Name + " - " + e.Type.ToString()
+                    ExamPeriodName = e.Period.Name + ( e.Type!=ExamType.Unkwnon ? (e.Type==ExamType.PismenoUsmeni ? " - " + "Pismeno-Usmeni" : " - " + e.Type.ToString() )  :  "")
 
                 })
                 .OrderByDescending(x=>x.CreatedDateTimeUtc)
-                .Take(6)
+                .Take(20)
                 .ToListAsync();
 
 

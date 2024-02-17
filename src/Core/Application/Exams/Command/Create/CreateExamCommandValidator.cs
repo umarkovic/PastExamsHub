@@ -24,22 +24,28 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             RuleFor(x => x.ExamDate)
                 .Cascade(CascadeMode.Stop)
                  .NotNull()
-                 .NotEmpty();
+                 .NotEmpty()
+                 .WithMessage("Polje za datum odrzavanja ispita je obavezno!");
 
             RuleFor(x => x.PeriodUid)
                .Cascade(CascadeMode.Stop)
                 .NotNull()
-                .NotEmpty();
+                .NotEmpty().WithMessage("Ispitni rok nije izabran.");
 
             RuleFor(x => x.CourseUid)
                .Cascade(CascadeMode.Stop)
                 .NotNull()
-                .NotEmpty();
+                .NotEmpty().WithMessage("Predmet  nije izabran.");
 
-            RuleFor(x => x.NumberOfTasks)
-               .Cascade(CascadeMode.Stop)
+
+
+            RuleFor(x => x.Type)
+                 .NotNull()
+                 .NotEmpty().WithMessage("Polje za tip ispita nije izabrano.");
+
+            RuleFor(x => x.File)
                 .NotNull()
-                .NotEmpty();
+                .NotEmpty().WithMessage("Dokument ili slika ispita je obavezno!");
 
 
         }
