@@ -25,7 +25,7 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Repositories
             //double check
             return base.GetQuery()
                 .Include(x => x.Course).ThenInclude(x=>x.Lecturer)
-                .Include(x=>x.Document)
+                .Include(x=>x.File)
                 .Include(x=>x.Period);
 
         }

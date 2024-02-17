@@ -59,7 +59,7 @@ namespace PastExamsHub.Core.Application.Exams.Queries.GetSingle
 
 
             var file = await (from e in DbContext.Exams
-                                  join d in DbContext.Files on e.Document.Id equals d.Id
+                                  join d in DbContext.Files on e.File.Id equals d.Id
                                   where e.Uid == request.Uid
                                   select d
                             ).SingleOrDefaultAsync();

@@ -6,6 +6,7 @@ DELETE FROM [PastExamsHub].[dbo].[Exams]
 DELETE FROM [PastExamsHub].[dbo].[ExamPeriods]
 DELETE FROM [PastExamsHub].[dbo].[Courses]
 DELETE FROM [PastExamsHub].[dbo].[Users]
+DELETE FROM [PastExamsHub].[dbo].[Files]
 
 GO
 SET IDENTITY_INSERT [dbo].[ExamPeriods] ON 
@@ -208,21 +209,29 @@ INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [
 GO
 SET IDENTITY_INSERT [dbo].[Courses] OFF
 GO
+SET IDENTITY_INSERT [dbo].[Files] ON 
+GO
+INSERT [dbo].[Files] ([Id], [FileName], [FilePath], [Type], [Uid], [IsSolution]) VALUES (1, N'test-image.jpg', N'..\Infrastructure\Resources\Images\test-image.jpg', 2, N'imageTest', 0)
+GO
+INSERT [dbo].[Files] ([Id], [FileName], [FilePath], [Type], [Uid], [IsSolution]) VALUES (2, N'test-pdf.pdf', N'..\Infrastructure\Resources\Documents\test-pdf.pdf', 1, N'pdfTest', 0)
+GO
+SET IDENTITY_INSERT [dbo].[Files] OFF
+GO
 SET IDENTITY_INSERT [dbo].[Exams] ON 
 GO
-INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [DocumentId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (1, 1, 5, NULL, 1, CAST(N'2023-08-22T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:27:11.7109070' AS DateTime2), 5, N'Ispit iz algoritma i programiranja', 0, N'eb729c8c-ddff-420b-8c29-9347c9696efa')
+INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (1, 1, 5, 2, 1, CAST(N'2023-08-22T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:27:11.7109070' AS DateTime2), 5, N'Ispit iz algoritma i programiranja', 0, N'eb729c8c-ddff-420b-8c29-9347c9696efa')
 GO
-INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [DocumentId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (2, 13, 15, NULL, 1, CAST(N'2021-01-22T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:26:34.9465133' AS DateTime2), 2, N'Ispit iz baza', 0, N'66ddc0a7-4764-487f-9ef6-f89da6123875')
+INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (2, 13, 15, 2, 1, CAST(N'2021-01-22T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:26:34.9465133' AS DateTime2), 2, N'Ispit iz baza', 0, N'66ddc0a7-4764-487f-9ef6-f89da6123875')
 GO
-INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [DocumentId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (3, 32, 1, NULL, 2, CAST(N'2023-01-22T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:25:15.3136009' AS DateTime2), 4, N'Ispit iz Softverskog', 0, N'44daad75-1612-4189-80f9-7661b1fcd673')
+INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (3, 32, 1, 2, 2, CAST(N'2023-01-22T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:25:15.3136009' AS DateTime2), 4, N'Ispit iz Softverskog', 0, N'44daad75-1612-4189-80f9-7661b1fcd673')
 GO
-INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [DocumentId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (4, 37, 14, NULL, 1, CAST(N'2022-10-03T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:24:31.8025714' AS DateTime2), 4, N'Ispit iz Grafike', 0, N'6969fd77-2c0d-4194-8182-58c3d6f1f238')
+INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (4, 37, 14, 2, 1, CAST(N'2022-10-03T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:24:31.8025714' AS DateTime2), 4, N'Ispit iz Grafike', 0, N'6969fd77-2c0d-4194-8182-58c3d6f1f238')
 GO
-INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [DocumentId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (5, 31, 31, NULL, 3, CAST(N'2018-06-13T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:23:41.6987281' AS DateTime2), 2, N'Ispit iz Sisitema baza', 0, N'b526b24e-3ffa-40ad-b428-6054ceb811b3')
+INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (5, 31, 31, 2, 3, CAST(N'2018-06-13T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:23:41.6987281' AS DateTime2), 2, N'Ispit iz Sisitema baza', 0, N'b526b24e-3ffa-40ad-b428-6054ceb811b3')
 GO
-INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [DocumentId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (6, 2, 16, NULL, 2, CAST(N'2021-03-26T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:22:05.0988724' AS DateTime2), 10, N'Ispit iz Komponenti', 0, N'246a5132-0110-4a2d-9884-be364ddada94')
+INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (6, 2, 16, 2, 2, CAST(N'2021-03-26T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:22:05.0988724' AS DateTime2), 10, N'Ispit iz Komponenti', 0, N'246a5132-0110-4a2d-9884-be364ddada94')
 GO
-INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [DocumentId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (7, 19, 32, NULL, 3, CAST(N'2018-07-02T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:21:11.1716408' AS DateTime2), 5, N'Ispit iz Programskih jezika', 0, N'89c43eaa-fc19-4204-87df-e1b92f6fa633')
+INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate], [CreatedDateTimeUtc], [NumberOfTasks], [Notes], [IsSoftDeleted], [Uid]) VALUES (7, 19, 32, 2, 3, CAST(N'2018-07-02T23:26:16.2470000' AS DateTime2), CAST(N'2024-02-07T23:21:11.1716408' AS DateTime2), 5, N'Ispit iz Programskih jezika', 0, N'89c43eaa-fc19-4204-87df-e1b92f6fa633')
 GO
 SET IDENTITY_INSERT [dbo].[Exams] OFF
 GO
@@ -243,4 +252,5 @@ GO
 INSERT [dbo].[ExamPeriodExam] ([Id], [ExamPeriodId], [ExamId], [Uid]) VALUES (7, 32, 7, N'7d160b25-58d6-4ab6-97c9-e474ed896615')
 GO
 SET IDENTITY_INSERT [dbo].[ExamPeriodExam] OFF
+
 GO

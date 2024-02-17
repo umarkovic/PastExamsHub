@@ -37,6 +37,7 @@ dotnet ef migrations add ExpandEnttitiesWithIsSoftDeleted --context CoreDbContex
 dotnet ef migrations add InitialMigraiton --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
 dotnet ef migrations add RefactorsDocumentEntity --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
 dotnet ef migrations add AddsRenamesAndPropertiesExpand --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
+dotnet ef migrations add RenamesDocumentIntoFile --context CoreDbContext --output-dir Persistence\Migrations\CoreDb --project src\Core\Infrastructure\Core.Infrastructure.csproj --startup-project src\Core\WebAPI\Core.WebAPI.csproj
 [READING]
 https://www.entityframeworktutorial.net/efcore/cli-commands-for-ef-core-migration.aspx
 

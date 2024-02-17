@@ -39,7 +39,7 @@ namespace PastExamsHub.Core.Application.Statistics.Queries.GetStatistics
             var examsCount = ExamsRepository.GetExamsCount();
             var coursesCount = CoursesRepository.GetCoursesCount();
 
-            var numberOfSolutions = await (from es in DbContext.ExamSolutions select es).CountAsync();
+            var numberOfSolutions = await (from es in DbContext.Exams select es).CountAsync();
 
             return new GetStatisticsQueryResult 
             {
