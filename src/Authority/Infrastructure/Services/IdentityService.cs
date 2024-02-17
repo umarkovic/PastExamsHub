@@ -71,10 +71,10 @@ namespace PastExamsHub.Authority.Infrastructure.Services
 
         public async Task SignInAsync(string email, string password, string returnUri)
         {
-            //await ValidateReturnUrl(returnUri);
+            await ValidateReturnUrl(returnUri);
 
-            //await SignInManager.SignOutAsync();
-            //var trimmedEmail = email.Trim();
+            await SignInManager.SignOutAsync();
+            var trimmedEmail = email.Trim();
 
             var user = await _FindByEmailAsync(email);
 
@@ -84,8 +84,8 @@ namespace PastExamsHub.Authority.Infrastructure.Services
                 throw new ValidationException(validationFailure);
             }
 
-            //string returnUrl = new Uri(returnUri).PathAndQuery;
-            //var context = await Interaction.GetAuthorizationContextAsync(returnUrl);
+            string returnUrl = new Uri(returnUri).PathAndQuery;
+            var context = await Interaction.GetAuthorizationContextAsync(returnUrl);
 
             var result = await SignInManager.PasswordSignInAsync(email, password, true, false);
 

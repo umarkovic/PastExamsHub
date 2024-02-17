@@ -90,11 +90,8 @@ namespace PastExamsHub.Authority.Infrastructure
                 {
                     options.ConfigureDbContext = persistedGrantDbContextOptionsBuilder;
 
-                    // this enables automatic token cleanup. this is optional.
-                    options.EnableTokenCleanup = true;
-                    options.TokenCleanupInterval = 30;
                 })
-                .AddSigninCredential(identityServerOptions)
+                .AddDeveloperSigningCredential()
                 //.AddSigningCredential(new X509Certificate2("D:\\0.Diplomski rad\\PastExamsHub_API\\src\\Authority\\Infrastructure\\Files\\cert.pfx", ""))//IMPORTANT: custom extension method from Template.Authority.Infrastructure.Extensions
                 .AddAspNetIdentity<IdentityApplicationUser>()
                 .AddJwtBearerClientAuthentication()
