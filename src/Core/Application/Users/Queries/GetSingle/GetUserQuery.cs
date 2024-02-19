@@ -7,5 +7,8 @@ namespace PastExamsHub.Core.Application.Users.Queries.GetSingle
     {
         [OpenApiExclude]
         public string Uid { get; set; }
+
+        [OpenApiExclude]
+        public string UserUid { get; set; }
     }
 }

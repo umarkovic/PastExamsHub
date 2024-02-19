@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PastExamsHub.Base.Application.Common.Models;
 using PastExamsHub.Core.Application.Common.Interfaces;
 using PastExamsHub.Core.Application.Courses.Models;
@@ -30,7 +31,7 @@ namespace PastExamsHub.Core.Application.Exams.Queries.GetCollection
 
         public async Task<GetExamsQueryResult> Handle (GetExamsQuery request , CancellationToken cancellationToken)
         {
-
+            var currentUser = await (from u in DbContext.Users where u.Uid == request.UserUid select u).FirstOrDefaultAsync();
             var query = ExamsRepository
                 .GetQuery()
                 .OrderByDescending(x=>x.ExamDate)
@@ -50,7 +51,8 @@ namespace PastExamsHub.Core.Application.Exams.Queries.GetCollection
                     NumberOfTasks = e.NumberOfTasks,
                     Type = e.Type,
                     PeriodUid = e.Period.Uid,
-                    ExamPeriod = ExamPeriodModel.From(e.Period)
+                    ExamPeriod = ExamPeriodModel.From(e.Period),
+                    IsEditAndDeleteAllowed = e.CreatedBy.Uid == currentUser.Uid
                 });
 
             query = request.CourseUid != null ? query.Where(x => x.CourseUid == request.CourseUid) : query;

@@ -12,5 +12,8 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Command.Delete
     {
         [OpenApiExclude]
         public string Uid { get; set; }
+
+        [OpenApiExclude]
+        public string UserUid { get; set; }
     }
 }

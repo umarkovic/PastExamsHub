@@ -29,6 +29,9 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
                     b.Property<int>("CourseType")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<int>("ESPB")
                         .HasColumnType("int");
 
@@ -55,6 +58,8 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
 
                     b.HasIndex("LecturerId");
 
@@ -580,6 +585,9 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
                     b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDateTimeUtc")
                         .HasColumnType("datetime2");
 
@@ -612,6 +620,8 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
 
                     b.HasIndex("CourseId");
 
+                    b.HasIndex("CreatedById");
+
                     b.HasIndex("FileId");
 
                     b.HasIndex("PeriodId");
@@ -625,6 +635,9 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CreatedById")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -646,6 +659,8 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
 
                     b.ToTable("ExamPeriods");
                 });
@@ -849,9 +864,15 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
 
             modelBuilder.Entity("PastExamsHub.Core.Domain.Entities.Course", b =>
                 {
+                    b.HasOne("PastExamsHub.Core.Domain.Entities.User", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
                     b.HasOne("PastExamsHub.Core.Domain.Entities.User", "Lecturer")
                         .WithMany()
                         .HasForeignKey("LecturerId");
+
+                    b.Navigation("CreatedBy");
 
                     b.Navigation("Lecturer");
                 });
@@ -861,6 +882,10 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
                     b.HasOne("PastExamsHub.Core.Domain.Entities.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId");
+
+                    b.HasOne("PastExamsHub.Core.Domain.Entities.User", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
 
                     b.HasOne("PastExamsHub.Core.Domain.Entities.File", "File")
                         .WithMany()
@@ -872,9 +897,20 @@ namespace PastExamsHub.Core.Infrastructure.Persistence.Migrations.CoreDb
 
                     b.Navigation("Course");
 
+                    b.Navigation("CreatedBy");
+
                     b.Navigation("File");
 
                     b.Navigation("Period");
+                });
+
+            modelBuilder.Entity("PastExamsHub.Core.Domain.Entities.ExamPeriod", b =>
+                {
+                    b.HasOne("PastExamsHub.Core.Domain.Entities.User", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.Navigation("CreatedBy");
                 });
 
             modelBuilder.Entity("PastExamsHub.Core.Domain.Entities.ExamPeriodExam", b =>

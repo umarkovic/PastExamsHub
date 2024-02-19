@@ -51,6 +51,8 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             command.PeriodUid.ThrowIfNull();
             command.CourseUid.ThrowIfNull();
 
+            var currentUser = await (from u in DbContext.Users where u.Uid == command.UserUid select u).FirstOrDefaultAsync();
+
             var validationFailures = new List<ValidationFailure>();
 
             var examPeriod = await ExamPeriodRepository
@@ -161,7 +163,7 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
             }
 
             var course = await CoursesRepository.GetByUidAsync(command.CourseUid, cancellationToken);
-            var exam = new Exam(course, examPeriod, examFile, command.Type, command.ExamDate, command.NumberOfTasks, command.Notes);
+            var exam = new Exam(course, examPeriod, examFile, command.Type, command.ExamDate, command.NumberOfTasks, command.Notes, currentUser);
             ExamRepository.Insert(exam);
 
             var examPeriodExam  = new ExamPeriodExam(examPeriod, exam);

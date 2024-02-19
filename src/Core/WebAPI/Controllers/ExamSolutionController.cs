@@ -1,15 +1,22 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Base.WebAPI.Controllers;
 using PastExamsHub.Core.Application.Exams.Command.Create;
 using PastExamsHub.Core.Application.Exams.Queries.GetCollection;
+using PastExamsHub.Core.Application.Exams.Queries.GetSingle;
 using PastExamsHub.Core.Application.ExamSoultions.Commands.Create;
 using PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection;
+using PastExamsHub.Core.Application.ExamSoultions.Queries.GetSingle;
+using PastExamsHub.Core.Application.Grades.Commands.Create;
+using System.Net;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace PastExamsHub.Core.WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class ExamSolutionController : ApiController
     {
         public ExamSolutionController
@@ -26,7 +33,19 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<ActionResult<GetExamSolutionsQueryResult>> GetCollection([FromQuery] GetExamSolutionsQuery request)
         {
+            request.UserUid = CurrentUserService.UserUid;
+            var result = await Mediator.Send(request);
 
+            return Ok(result);
+        }
+
+
+        [HttpGet("{uid}")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public async Task<ActionResult<GetExamSolutionQueryResult>> GetSingle(string uid, [FromQuery] GetExamSolutionQuery request)
+        {
+            request.UserUid = CurrentUserService.UserUid;
+            request.Uid = WebUtility.UrlDecode(uid);
             var result = await Mediator.Send(request);
 
             return Ok(result);
@@ -39,9 +58,24 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
         public async Task<ActionResult<CreateExamSolutionCommandResult>> Create([FromQuery] CreateExamSolutionCommand command)
         {
+            command.UserUid = CurrentUserService.UserUid;
             var result = await Mediator.Send(command);
 
             return Ok(result);
         }
+
+
+        [HttpPost("Grade")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
+        [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
+        public async Task<ActionResult<CreateGradeCommandResult>> Grade ([FromQuery] CreateGradeCommand command)
+        {
+            command.UserUid = CurrentUserService.UserUid;
+            var result = await Mediator.Send(command);
+
+            return Ok(result);
+        }
+
+
     }
 }

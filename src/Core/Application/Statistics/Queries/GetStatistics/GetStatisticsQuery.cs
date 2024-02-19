@@ -9,5 +9,6 @@ namespace PastExamsHub.Core.Application.Statistics.Queries.GetStatistics
 {
     public class GetStatisticsQuery : IRequest<GetStatisticsQueryResult>
     {
+
     }
 }

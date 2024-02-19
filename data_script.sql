@@ -83,7 +83,7 @@ INSERT [dbo].[ExamPeriods] ([Id], [Name], [StartDate], [EndDate], [PeriodType], 
 GO
 SET IDENTITY_INSERT [dbo].[ExamPeriods] OFF
 GO
-
+UPDATE [dbo].[ExamPeriods] SET CreatedById = 2
 
 SET IDENTITY_INSERT [dbo].[Users] ON 
 GO
@@ -208,6 +208,8 @@ GO
 INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (39, N'Zastita informacija', 1, 1, 9, 4, 1, 6, 0, N'zastita')
 GO
 SET IDENTITY_INSERT [dbo].[Courses] OFF
+
+UPDATE [dbo].[Courses] SET CreatedById = 2
 GO
 SET IDENTITY_INSERT [dbo].[Files] ON 
 GO
@@ -235,6 +237,8 @@ INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate]
 GO
 SET IDENTITY_INSERT [dbo].[Exams] OFF
 GO
+UPDATE [dbo].[Exams] SET CreatedById = 2
+
 SET IDENTITY_INSERT [dbo].[ExamPeriodExam] ON 
 GO
 INSERT [dbo].[ExamPeriodExam] ([Id], [ExamPeriodId], [ExamId], [Uid]) VALUES (1, 5, 1, N'63400138-e58f-4d76-b7c4-7e61aa0d33d8')

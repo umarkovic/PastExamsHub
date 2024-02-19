@@ -32,9 +32,10 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Create
         public async Task<CreateCourseCommandResult> Handle (CreateCourseCommand command, CancellationToken cancellationToken)
         {
             var lecturer = await UsersRepository.GetByUidAsync(command.LecturerUid, cancellationToken);
+            var currentUser = await UsersRepository.GetByUidAsync(command.UserUid, cancellationToken);
 
 
-            Course course = new Course(command.Name, command.CourseType, command.StudyYear, command.ESPB, command.Semester);
+            Course course = new Course(command.Name, command.CourseType, command.StudyYear, command.ESPB, command.Semester, currentUser);
             course.Lecturer = lecturer;
             course.StudyType = StudyType.OsnovneAkademskeStudije; //COMPLETE: change this later
 

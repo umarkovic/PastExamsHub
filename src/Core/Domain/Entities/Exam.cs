@@ -18,7 +18,7 @@ namespace PastExamsHub.Core.Domain.Entities
         public DateTime CreatedDateTimeUtc { get; set; }
         public int NumberOfTasks { get; set; }
         public string Notes { get; set; }
-
+        public User CreatedBy { get; set; }
         public bool IsSoftDeleted { get; set; }
 
 
@@ -27,7 +27,7 @@ namespace PastExamsHub.Core.Domain.Entities
             Uid = Guid.NewGuid().ToString();
         }
 
-        public Exam(Course course, ExamPeriod period, File document, ExamType type, DateTime examDate, int numberOfTasks, string notes)
+        public Exam(Course course, ExamPeriod period, File document, ExamType type, DateTime examDate, int numberOfTasks, string notes, User createdByUid)
         {
             Uid = Guid.NewGuid().ToString();
             Course = course;
@@ -39,6 +39,7 @@ namespace PastExamsHub.Core.Domain.Entities
             CreatedDateTimeUtc = DateTime.UtcNow;
             Notes = notes;
             IsSoftDeleted = false;
+            CreatedBy = createdByUid;
         }
     }
 }

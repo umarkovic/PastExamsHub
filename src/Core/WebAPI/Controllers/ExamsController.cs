@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Base.WebAPI.Controllers;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace PastExamsHub.Core.WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class ExamsController : ApiController
     {
         public ExamsController
@@ -32,7 +34,7 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<ActionResult<GetExamsQueryResult>> GetCollection([FromQuery] GetExamsQuery request)
         {
-
+            request.UserUid = CurrentUserService.UserUid;
             var result = await Mediator.Send(request);
 
             return Ok(result);
@@ -45,6 +47,7 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
         public async Task<ActionResult<CreateExamCommandResult>> Create([FromQuery] CreateExamCommand command)
         {
+            command.UserUid = CurrentUserService.UserUid;
             var result = await Mediator.Send(command);
 
             return Ok(result);
@@ -55,7 +58,7 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<ActionResult<GetLatestExamsQueryResult>> GetLatestExams([FromQuery] GetLatestExamsQuery request)
         {
-
+            request.UserUid = CurrentUserService.UserUid;
             var result = await Mediator.Send(request);
 
             return Ok(result);

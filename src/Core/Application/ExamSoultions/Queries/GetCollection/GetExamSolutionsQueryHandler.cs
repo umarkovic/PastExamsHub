@@ -40,15 +40,18 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
         public async Task<GetExamSolutionsQueryResult> Handle(GetExamSolutionsQuery request, CancellationToken cancellationToken)
         {
 
+            var currentUser = await (from u in DbContext.Users where u.Uid == request.UserUid select u).FirstOrDefaultAsync();
+
             var solutions =  (
                 from es in DbContext.ExamSolutions
+                join esg in DbContext.ExamSolutionGrades.Where(x => x.User.Uid == currentUser.Uid) on es.Id equals esg.Solution.Id into esg_join
+                from _esg in esg_join.DefaultIfEmpty()
                 join f in DbContext.Files on es.File.Id equals f.Id
                 join e in DbContext.Exams on es.Exam.Id equals e.Id
                 join c in DbContext.Courses on e.Course.Id equals c.Id
                 join ep in DbContext.ExamPeriods on e.Period.Id equals ep.Id
                 join u in DbContext.Users on es.User.Id equals u.Id
-                where e.Uid == request.ExamUid &&
-                es.IsSoftDeleted == false
+                where e.Uid == request.ExamUid
                 select new ExamSolutionModel
                 {
                     Uid = es.Uid,
@@ -67,6 +70,8 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
                     PeriodName = ep.Name,
                     PeriodType = ep.PeriodType,
                     SoulutionComment = es.Comment,
+                    IsEditAndDeleteAllowed = u.Uid == currentUser.Uid,
+                    IsAlreadyGraded = _esg != null ? true : false
 
                 });
 

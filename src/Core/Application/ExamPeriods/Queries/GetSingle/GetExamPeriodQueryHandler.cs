@@ -32,6 +32,9 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetSingle
 
         public async Task<GetExamPeriodQueryResult> Handle(GetExamPeriodQuery request, CancellationToken cancellationToken)
         {
+
+            var currentUser = await (from u in DbContext.Users where u.Uid == request.UserUid select u).FirstOrDefaultAsync();
+
             var period = await ExamPeriodRepository.
                  GetQuery()
                  .Where(x => x.Uid == request.Uid)
@@ -43,6 +46,7 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetSingle
                      EndDate = x.EndDate.Date,
                      PeriodType = x.PeriodType,
                      PeriodDayDuration = (x.EndDate.Date - x.StartDate.Date).Days,
+                     IsEditAndDeleteAllowed = x.CreatedBy.Uid == currentUser.Uid
                  })
                  .SingleOrDefaultAsync(cancellationToken);
 
@@ -65,7 +69,8 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetSingle
                             ExamDate = e.ExamDate,
                             Notes = e.Notes,
                             NumberOfTasks = e.NumberOfTasks,
-                            Type = e.Type,
+                            Type = e.Type
+
 
 
                         }).ToListAsync(cancellationToken);

@@ -13,6 +13,9 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Update
     public class UpdateCourseCommand :  IRequest<UpdateCourseCommandResult>
     {
         [OpenApiExclude]
+        public string UserUid { get; set; }
+
+        [OpenApiExclude]
         public string Uid { get; set; }
         public string LecturerUid { get; set; }
         public string Name { get; set; }

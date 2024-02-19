@@ -20,5 +20,6 @@ namespace PastExamsHub.Core.Application.Courses.Models
         public int StudyYear { get; set; }
         public int Semester { get; set; }
         public int ESPB { get; set; }
+        public bool IsEditAndDeleteAllowed { get; set; }
     }
 }

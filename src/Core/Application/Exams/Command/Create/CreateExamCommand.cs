@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using PastExamsHub.Base.Domain.Common;
 using PastExamsHub.Core.Domain.Entities;
 using PastExamsHub.Core.Domain.Enums;
 using System;
@@ -12,7 +13,8 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
 {
     public class CreateExamCommand : IRequest<CreateExamCommandResult>
     {
-
+        [OpenApiExclude]
+        public string UserUid { get; set; }
         public string CourseUid { get; set; }
         public string PeriodUid { get; set; }    
         public IFormFile File { get; set; }

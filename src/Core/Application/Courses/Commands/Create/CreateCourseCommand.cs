@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PastExamsHub.Base.Domain.Common;
 using PastExamsHub.Core.Domain.Entities;
 using PastExamsHub.Core.Domain.Enums;
 using System;
@@ -11,6 +12,8 @@ namespace PastExamsHub.Core.Application.Courses.Commands.Create
 {
     public class CreateCourseCommand : IRequest<CreateCourseCommandResult>
     {
+        [OpenApiExclude]
+        public string UserUid { get; set; }
         public string LecturerUid { get; set; }
         public string Name { get; set; }
         public CourseType CourseType { get; set; }

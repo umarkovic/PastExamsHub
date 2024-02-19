@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Core.Application.Common.Interfaces;
 using PastExamsHub.Core.Domain.Entities;
@@ -27,7 +28,9 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Command.Create
         }
         public async Task<CreateExamPeriodCommandResult> Handle(CreateExamPeriodCommand command, CancellationToken cancellationToken)
         {
-            var period = new ExamPeriod(command.Name, command.StartDate, command.EndDate, command.PeriodType);
+            var currentUser = await (from u in DbContext.Users where u.Uid == command.UserUid select u).FirstOrDefaultAsync();
+
+            var period = new ExamPeriod(command.Name, command.StartDate, command.EndDate, command.PeriodType, currentUser);
 
             ExamPeriodRepository.Insert(period);
 

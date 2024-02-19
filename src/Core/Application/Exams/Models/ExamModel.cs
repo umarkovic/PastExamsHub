@@ -39,5 +39,8 @@ namespace PastExamsHub.Core.Application.Exams.Models
         public byte[] File { get; set; }
 
 
+        public bool IsEditAndDeleteAllowed { get; set; }
+
+
     }
 }

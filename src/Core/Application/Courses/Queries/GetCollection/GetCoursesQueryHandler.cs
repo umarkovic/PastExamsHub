@@ -33,9 +33,12 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
             if (request.StudyYear == 0)
                 request.StudyYear = null;
 
+            var currentUser = await (from u in DbContext.Users where u.Uid ==request.UserUid select u).FirstOrDefaultAsync();
+
             var query = (
                 from c in QueryBuilder.GetQuery(request.SearchText)
-                join u in DbContext.Users on c.Lecturer.Id equals u.Id into u_join
+                join o in DbContext.Users on c.CreatedBy.Id equals o.Id
+                join u in DbContext.Users on c.Lecturer.Id equals u.Id into u_join     
                 from _u in u_join.DefaultIfEmpty()
                 where (request.StudyYear== null || c.StudyYear == request.StudyYear) &&
                 c.IsSoftDeleted ==false
@@ -50,7 +53,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
                     LecturerLastName = _u != null ? _u.LastName : "/",
                     CourseType = c.CourseType,
                     StudyType = c.StudyType,
-                    Semester = c.Semester
+                    Semester = c.Semester,
+                    IsEditAndDeleteAllowed = o.Uid == currentUser.Uid
 
                 }
                 );

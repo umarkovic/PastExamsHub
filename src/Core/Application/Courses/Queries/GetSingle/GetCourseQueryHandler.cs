@@ -29,6 +29,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetSingle
 
         public async Task<GetCourseQueryResult> Handle(GetCourseQuery request, CancellationToken cancellationToken)
         {
+            var currentUser = await (from u in DbContext.Users where u.Uid == request.UserUid select u).FirstOrDefaultAsync();
+
             var result = await CoursesRepository.
                 GetQuery()
                 .Where(x => x.Uid == request.Uid)
@@ -42,7 +44,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetSingle
                     LecturerLastName = c.Lecturer.LastName,
                     CourseType = c.CourseType,
                     Semester = c.Semester,
-                    LecturerUid = c.Lecturer.Uid
+                    LecturerUid = c.Lecturer.Uid,
+                    IsEditAndDeleteAllowed = c.CreatedBy.Uid == currentUser.Uid
                 })
                 .SingleOrDefaultAsync(cancellationToken);
 

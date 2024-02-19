@@ -16,7 +16,7 @@ namespace PastExamsHub.Core.Application.ExamPeriods
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int PeriodDayDuration { get; set; }
-
+        public bool IsEditAndDeleteAllowed { get; set; }
         public ExamPeriodModel()
         {
             

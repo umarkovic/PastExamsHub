@@ -12,5 +12,8 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetSingle
     {
         [OpenApiExclude]
         public string Uid { get; set; }
+
+        [OpenApiExclude]
+        public string UserUid { get; set; }
     }
 }

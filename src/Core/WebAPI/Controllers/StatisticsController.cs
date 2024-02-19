@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Base.WebAPI.Controllers;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace PastExamsHub.Core.WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class StatisticsController : ApiController
     {
         public StatisticsController

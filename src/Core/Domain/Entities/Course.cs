@@ -19,6 +19,7 @@ namespace PastExamsHub.Core.Domain.Entities
         public int StudyYear { get; set; }
         public int  Semester { get; set; }
         public int ESPB { get; set; }
+        public User CreatedBy { get; set; }
         public bool IsSoftDeleted { get; set; }
 
         public Course()
@@ -32,7 +33,8 @@ namespace PastExamsHub.Core.Domain.Entities
             CourseType type,
             int year,
             int semester,
-            int espb
+            int espb,
+            User createdBy
         )
         {
             Uid = Guid.NewGuid().ToString();
@@ -42,6 +44,7 @@ namespace PastExamsHub.Core.Domain.Entities
             Semester = semester;
             ESPB = espb;
             IsSoftDeleted = false;
+            CreatedBy = createdBy;
         }
 
 

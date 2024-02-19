@@ -8,9 +8,11 @@ using PastExamsHub.Core.Application.Common.Users.Queries.GetCollection;
 using System.Net;
 using System.Threading.Tasks;
 using PastExamsHub.Core.Application.Users.Commands.Update;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PastExamsHub.Core.WebAPI.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class UsersController : ApiController
     {
         public UsersController
@@ -27,7 +29,7 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<ActionResult<GetUsersQueryResult>> GetCollection([FromQuery] GetUsersQuery request)
         {
-
+            request.UserUid = CurrentUserService.UserUid;
             var result = await Mediator.Send(request);
 
             return Ok(result);
@@ -38,6 +40,7 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<ActionResult<GetUserQueryResult>> GetSingle(string uid, [FromQuery] GetUserQuery request)
         {
+            request.UserUid = CurrentUserService.UserUid;
             request.Uid = WebUtility.UrlDecode(uid);
             var result = await Mediator.Send(request);
 
