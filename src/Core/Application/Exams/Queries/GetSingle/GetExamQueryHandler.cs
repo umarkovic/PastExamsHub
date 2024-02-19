@@ -42,6 +42,7 @@ namespace PastExamsHub.Core.Application.Exams.Queries.GetSingle
                 .Where(x=>x.Uid==request.Uid)
                 .Select(e => new ExamModel
                 {
+                    ExamUid = e.Uid,
                     CourseUid = e.Course.Uid,
                     CourseName = e.Course.Name,
                     StudyYear = e.Course.StudyYear,
