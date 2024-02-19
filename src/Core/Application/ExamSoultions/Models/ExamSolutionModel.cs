@@ -13,16 +13,16 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Models
     public class ExamSolutionModel
     {
 
+        public DateTime CreatedDateTimeUtc { get; set; }
         public string OwnerFirstName { get; set; }
         public string OwnerLastName { get; set; }
-        public int? OwnerStudyYear { get; set; }
         public RoleType OwnerRole { get; set; }
-        public string Comment { get; set; }
-        public DateTime CreatedDateTimeUtc { get; set; }
+        public FileType FileType { get; set; }
         public int? TaskNumber { get; set; }
-
-        //public Document Document { get; set; }
+        public string SoulutionComment { get; set; }
+        public int? OwnerStudyYear { get; set; }
         public int GradeCount { get; set; }
+        public int Grade { get; set; }
         public string CourseName { get; set; }
         public ExamType Type { get; set; }
         public string PeriodName { get; set; }

@@ -35,6 +35,7 @@ namespace PastExamsHub.Core.Application.Exams.Models
 
         //File
         public FileType FileType { get; set; }
+        public string ContentType { get; set; }
         public byte[] File { get; set; }
 
 

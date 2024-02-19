@@ -41,6 +41,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
 
             var solutions =  await ( 
                 from es in DbContext.ExamSolutions
+                join f in DbContext.Files on es.File.Id equals f.Id
                 join e in DbContext.Exams on es.Exam.Id equals e.Id
                 join c in DbContext.Courses on e.Course.Id equals c.Id
                 join ep in DbContext.ExamPeriods on e.Period.Id equals ep.Id
@@ -49,18 +50,20 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
                 es.IsSoftDeleted == false
                 select new ExamSolutionModel
                 {
+                    CreatedDateTimeUtc = es.CreatedDateTimeUtc,
                     OwnerFirstName = u.FirstName,
                     OwnerLastName = u.LastName,
                     OwnerRole = u.Role,
+                    FileType = f.Type,
+                    TaskNumber = es.TaskNumber,
+                    GradeCount = es.GradeCount,
+                    Grade = es.Grade,
                     OwnerStudyYear = u.StudyYear,
                     CourseName = c.Name,
                     Type = e.Type,
                     PeriodName = ep.Name,
                     PeriodType = ep.PeriodType,
-                    Comment = es.Comment,
-                    CreatedDateTimeUtc = es.CreatedDateTimeUtc,
-                    GradeCount = es.GradeCount,
-                    TaskNumber = es.TaskNumber,
+                    SoulutionComment = es.Comment,
 
                 }).ToListAsync();
 

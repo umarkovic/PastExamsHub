@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using PastExamsHub.Base.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Commands.Create
 {
     public class CreateExamSolutionCommand : IRequest<CreateExamSolutionCommandResult>
     {
+        [OpenApiExclude]
         public string UserUid { get; set; }
         public string ExamUid { get; set; }
         public string Comment { get; set; }
