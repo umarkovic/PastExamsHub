@@ -12,7 +12,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Models
 {
     public class ExamSolutionModel
     {
-
+        public string Uid { get; set; }
         public DateTime CreatedDateTimeUtc { get; set; }
         public string OwnerFirstName { get; set; }
         public string OwnerLastName { get; set; }

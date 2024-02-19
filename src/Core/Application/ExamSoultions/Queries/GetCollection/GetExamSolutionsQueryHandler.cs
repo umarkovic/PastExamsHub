@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PastExamsHub.Base.Application.Common.Interfaces;
+using PastExamsHub.Base.Application.Common.Models;
 using PastExamsHub.Core.Application.Common.Interfaces;
 using PastExamsHub.Core.Application.ExamPeriods;
 using PastExamsHub.Core.Application.Exams.Models;
@@ -39,7 +40,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
         public async Task<GetExamSolutionsQueryResult> Handle(GetExamSolutionsQuery request, CancellationToken cancellationToken)
         {
 
-            var solutions =  await ( 
+            var solutions =  (
                 from es in DbContext.ExamSolutions
                 join f in DbContext.Files on es.File.Id equals f.Id
                 join e in DbContext.Exams on es.Exam.Id equals e.Id
@@ -50,6 +51,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
                 es.IsSoftDeleted == false
                 select new ExamSolutionModel
                 {
+                    Uid = es.Uid,
                     CreatedDateTimeUtc = es.CreatedDateTimeUtc,
                     OwnerFirstName = u.FirstName,
                     OwnerLastName = u.LastName,
@@ -65,14 +67,22 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
                     PeriodType = ep.PeriodType,
                     SoulutionComment = es.Comment,
 
-                }).ToListAsync();
+                });
 
             //COMPLETE: Add grade calculation for exam soultions in ExamSolutions
             //COMPLETE: add for each row, IsGradePosted by checking currentUserUid if exist in ExamSolutionGrade table
+            var results = await PaginationResult<ExamSolutionModel>.From(solutions, request.PageNumber, request.PageSize);
+
 
             return new GetExamSolutionsQueryResult
             {
-                Solutions = solutions
+                Solutions = results.Items,
+                TotalCount = results.TotalCount,
+                PageSize = results.PageSize,
+                CurrentPage = results.CurrentPage,
+                TotalPages = results.TotalPages,
+                HasNext = results.HasNext,
+                HasPrevious = results.HasPrevious
             };
         }
     }
