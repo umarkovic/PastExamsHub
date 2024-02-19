@@ -52,6 +52,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
                 select new ExamSolutionModel
                 {
                     Uid = es.Uid,
+                    OwnerUid = u.Uid,
                     CreatedDateTimeUtc = es.CreatedDateTimeUtc,
                     OwnerFirstName = u.FirstName,
                     OwnerLastName = u.LastName,
