@@ -51,7 +51,9 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection
                 join c in DbContext.Courses on e.Course.Id equals c.Id
                 join ep in DbContext.ExamPeriods on e.Period.Id equals ep.Id
                 join u in DbContext.Users on es.User.Id equals u.Id
-                where e.Uid == request.ExamUid
+                where e.Uid == request.ExamUid &&
+                es.IsSoftDeleted == false
+                orderby es.CreatedDateTimeUtc descending
                 select new ExamSolutionModel
                 {
                     Uid = es.Uid,

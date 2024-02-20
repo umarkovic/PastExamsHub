@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PastExamsHub.Base.Application.Common.Interfaces;
 using PastExamsHub.Base.WebAPI.Controllers;
+using PastExamsHub.Core.Application.Courses.Commands.Delete;
 using PastExamsHub.Core.Application.Exams.Command.Create;
 using PastExamsHub.Core.Application.Exams.Queries.GetCollection;
 using PastExamsHub.Core.Application.Exams.Queries.GetSingle;
 using PastExamsHub.Core.Application.ExamSoultions.Commands.Create;
+using PastExamsHub.Core.Application.ExamSoultions.Commands.Delete;
 using PastExamsHub.Core.Application.ExamSoultions.Queries.GetCollection;
 using PastExamsHub.Core.Application.ExamSoultions.Queries.GetSingle;
 using PastExamsHub.Core.Application.Grades.Commands.Create;
@@ -70,6 +72,18 @@ namespace PastExamsHub.Core.WebAPI.Controllers
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
         public async Task<ActionResult<CreateGradeCommandResult>> Grade ([FromQuery] CreateGradeCommand command)
         {
+            command.UserUid = CurrentUserService.UserUid;
+            var result = await Mediator.Send(command);
+
+            return Ok(result);
+        }
+
+
+        [HttpDelete("{uid}")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
+        public async Task<ActionResult<DeleteExamSolutionCommandResult>> Delete(string uid, DeleteExamSolutionCommand command)
+        {
+            command.Uid = WebUtility.UrlDecode(uid);
             command.UserUid = CurrentUserService.UserUid;
             var result = await Mediator.Send(command);
 
