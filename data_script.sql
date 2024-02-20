@@ -2,6 +2,8 @@
 USE [PastExamsHub]
 
 DELETE FROM [PastExamsHub].[dbo].[ExamPeriodExam]
+DELETE FROM [PastExamsHub].[dbo].[ExamSolutionGrades]
+DELETE FROM [PastExamsHub].[dbo].[ExamSolutions]
 DELETE FROM [PastExamsHub].[dbo].[Exams]
 DELETE FROM [PastExamsHub].[dbo].[ExamPeriods]
 DELETE FROM [PastExamsHub].[dbo].[Courses]
@@ -83,7 +85,7 @@ INSERT [dbo].[ExamPeriods] ([Id], [Name], [StartDate], [EndDate], [PeriodType], 
 GO
 SET IDENTITY_INSERT [dbo].[ExamPeriods] OFF
 GO
-UPDATE [dbo].[ExamPeriods] SET CreatedById = 2
+
 
 SET IDENTITY_INSERT [dbo].[Users] ON 
 GO
@@ -209,7 +211,7 @@ INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [
 GO
 SET IDENTITY_INSERT [dbo].[Courses] OFF
 
-UPDATE [dbo].[Courses] SET CreatedById = 2
+
 GO
 SET IDENTITY_INSERT [dbo].[Files] ON 
 GO
@@ -237,7 +239,7 @@ INSERT [dbo].[Exams] ([Id], [CourseId], [PeriodId], [FileId], [Type], [ExamDate]
 GO
 SET IDENTITY_INSERT [dbo].[Exams] OFF
 GO
-UPDATE [dbo].[Exams] SET CreatedById = 2
+
 
 SET IDENTITY_INSERT [dbo].[ExamPeriodExam] ON 
 GO
@@ -256,5 +258,8 @@ GO
 INSERT [dbo].[ExamPeriodExam] ([Id], [ExamPeriodId], [ExamId], [Uid]) VALUES (7, 32, 7, N'7d160b25-58d6-4ab6-97c9-e474ed896615')
 GO
 SET IDENTITY_INSERT [dbo].[ExamPeriodExam] OFF
+UPDATE [dbo].[ExamPeriods] SET CreatedById = 2
+UPDATE [dbo].[Exams] SET CreatedById = 2
+UPDATE [dbo].[Courses] SET CreatedById = 2
 
 GO
