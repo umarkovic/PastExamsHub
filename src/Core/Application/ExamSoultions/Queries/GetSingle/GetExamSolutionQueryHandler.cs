@@ -88,6 +88,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetSingle
 
                         // Determine the content type based on the file extension
                         var contentType = GetContentType(fileName);
+                        solution.ContentType = contentType;
 
                         var memory = new MemoryStream();
                         using (var stream = new FileStream(filePath, FileMode.Open))
@@ -98,7 +99,6 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetSingle
 
                         var fileResult = memory.ToArray();
                         solution.File = fileResult;
-
 
 
             var isCurrentUserOwner = solution.OwnerUid == currentUser.Uid;

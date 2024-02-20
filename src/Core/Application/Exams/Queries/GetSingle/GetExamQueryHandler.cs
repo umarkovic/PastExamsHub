@@ -70,6 +70,7 @@ namespace PastExamsHub.Core.Application.Exams.Queries.GetSingle
 
             // Determine the content type based on the file extension
             var contentType = GetContentType(fileName);
+            result.ContentType = contentType;
             result.FileType = file.Type;
 
             var memory = new MemoryStream();
