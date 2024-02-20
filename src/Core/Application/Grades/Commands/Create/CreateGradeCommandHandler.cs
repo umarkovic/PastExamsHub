@@ -66,7 +66,7 @@ namespace PastExamsHub.Core.Application.Grades.Commands.Create
                
 
             var calculatedGrade = GradesRepository.GetQuery().Where(x => x.Solution == solution).Sum(x => x.Grade);
-            calculatedGrade = calculatedGrade + grade;
+            calculatedGrade = !command.IsUpdate ? calculatedGrade + grade : calculatedGrade;
 
             solution.GradeCount = !command.IsUpdate ? solution.GradeCount+1 : solution.GradeCount;
             solution.Grade = calculatedGrade;
