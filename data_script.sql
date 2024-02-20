@@ -153,7 +153,7 @@ INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [
 GO
 INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (11, N'Uvod u racunarstvo', 1, 1, 10, 1, 2, 3, 0, N'uur')
 GO
-INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (12, N'Arhitektura i organizacija racunara', 1, 1, 8, 2, 1, 6, 0, N'aor')
+INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (12, N'Arhitektura racunara', 1, 1, 8, 2, 1, 6, 0, N'aor')
 GO
 INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (13, N'Baze Podataka', 1, 1, 3, 2, 1, 6, 0, N'baze')
 GO
@@ -163,9 +163,9 @@ INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [
 GO
 INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (16, N'Logicko projektovanje', 2, 1, 15, 2, 2, 5, 0, N'logproj')
 GO
-INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (17, N'Matematicki metodi u racunarstvu', 2, 1, 15, 2, 1, 6, 0, N'mmur')
+INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (17, N'Matematicki metodi', 2, 1, 15, 2, 1, 6, 0, N'mmur')
 GO
-INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (18, N'Objektno orijentisano programiranje', 1, 1, 2, 2, 2, 6, 0, N'oop')
+INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (18, N'Objektno programiranje', 1, 1, 2, 2, 2, 6, 0, N'oop')
 GO
 INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (19, N'Programski jezici', 1, 1, 9, 2, 1, 6, 0, N'pj')
 GO
@@ -187,7 +187,7 @@ INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [
 GO
 INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (28, N'Mikroracunarski sistemi', 1, 1, 14, 3, 2, 6, 0, N'mkis')
 GO
-INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (29, N'Objektno orijentisano projektovanje', 1, 1, 2, 3, 1, 6, 0, N'ooproj')
+INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (29, N'Objektno projektovanje', 1, 1, 2, 3, 1, 6, 0, N'ooproj')
 GO
 INSERT [dbo].[Courses] ([Id], [Name], [CourseType], [StudyType], [LecturerId], [StudyYear], [Semester], [ESPB], [IsSoftDeleted], [Uid]) VALUES (30, N'Racunarske mreze', 1, 1, 15, 3, 1, 6, 0, N'mreze')
 GO
