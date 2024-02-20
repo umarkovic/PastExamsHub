@@ -71,7 +71,8 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Queries.GetSingle
                     PeriodType = ep.PeriodType,
                     SoulutionComment = es.Comment,
                     IsEditAndDeleteAllowed = u.Uid == currentUser.Uid,
-                    IsAlreadyGraded = _esg != null ? true : false
+                    IsAlreadyGraded = _esg != null ? true : false,
+                    IsPositiveGraded = _esg != null ? _esg.Grade == 1 ? true : false : null,
 
                 }).SingleOrDefaultAsync();
 

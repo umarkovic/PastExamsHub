@@ -15,5 +15,6 @@ namespace PastExamsHub.Core.Application.Grades.Commands.Create
         public string UserUid { get; set; }
         public string ExamSolutionUid { get; set; }
         public bool IsPositive { get; set; }
+        public bool  IsUpdate { get; set; }
     }
 }

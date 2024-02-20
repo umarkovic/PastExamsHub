@@ -30,9 +30,7 @@ namespace PastExamsHub.Core.Application.ExamSoultions.Models
         public ExamPeriodType PeriodType { get; set; }
         public bool IsEditAndDeleteAllowed { get; set; }
         public bool IsAlreadyGraded { get; set; }
-
-
-
+        public bool? IsPositiveGraded { get; set; }
 
     }
 }

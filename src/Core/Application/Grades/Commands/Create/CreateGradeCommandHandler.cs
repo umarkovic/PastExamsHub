@@ -43,18 +43,41 @@ namespace PastExamsHub.Core.Application.Grades.Commands.Create
             var solution = await ExamSolutionsRepository.GetQuery().Where(x => x.Uid == command.ExamSolutionUid).SingleOrDefaultAsync();
             var user = await UsersRepository.GetByUidAsync(command.UserUid, cancellationToken);
 
-            solution.GradeCount++;
-            solution.Grade = 0; // Calculate
+            if(command.IsUpdate)
+            {
+                var existingGrade = GradesRepository.GetQuery().Where(x=>x.Solution == solution && x.User == user).SingleOrDefault();
+                if(existingGrade.Grade == -1 && command.IsPositive)
+                {
+                    existingGrade.Grade = 1;
+                    solution.Grade += 2;
+                    ExamSolutionsRepository.Update(solution);
+                    GradesRepository.Update(existingGrade);
+                }
+                else if (existingGrade.Grade == 1 && !command.IsPositive)
+                {
+                    existingGrade.Grade = -1;
+                    solution.Grade -= 2;
+                    ExamSolutionsRepository.Update(solution);
+                    GradesRepository.Update(existingGrade);
+                }
 
+                await DbContext.SaveChangesAsync(cancellationToken);
+            }
+               
 
             var calculatedGrade = GradesRepository.GetQuery().Where(x => x.Solution == solution).Sum(x => x.Grade);
             calculatedGrade = calculatedGrade + grade;
 
+            solution.GradeCount = !command.IsUpdate ? solution.GradeCount+1 : solution.GradeCount;
+            solution.Grade = calculatedGrade;
             ExamSolutionsRepository.Update(solution);
-            
-            var newGrade = new ExamSolutionGrade(user, solution, grade);
-            GradesRepository.Insert(newGrade);
 
+            if (!command.IsUpdate)
+            {
+                var newGrade = new ExamSolutionGrade(user, solution, grade);
+                GradesRepository.Insert(newGrade);
+            }
+            await DbContext.SaveChangesAsync(cancellationToken);
 
 
             return new CreateGradeCommandResult { Grade = 1, Uid = null };
