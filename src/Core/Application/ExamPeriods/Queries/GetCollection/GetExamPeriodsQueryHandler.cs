@@ -33,7 +33,8 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
                 from ep in QueryBuilder.GetQuery(request.SearchText)
                 join u in DbContext.Users on ep.CreatedBy.Id equals u.Id
                 orderby ep.StartDate descending
-                where ep.IsSoftDeleted == false
+                where ep.IsSoftDeleted == false &&
+                (request.Filter == null || request.Filter.PeriodType==null || ep.PeriodType == request.Filter.PeriodType)
                 select new ExamPeriodModel
                 {
                     Uid = ep.Uid,
@@ -46,6 +47,7 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
                 }
                 );
 
+    
 
             var results = await PaginationResult<ExamPeriodModel>.From(query, request.PageNumber, request.PageSize);
 

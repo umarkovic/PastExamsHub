@@ -14,5 +14,6 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
         [OpenApiExclude]
         public string UserUid { get; set; }
         public int? StudyYear { get; set; }
+        public CourseFilter? Filter { get; set; }
     }
 }
