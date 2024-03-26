@@ -118,7 +118,7 @@ namespace PastExamsHub.Core.Application.Exams.Command.Create
 
                 var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
 
-                var imageExtensions = new List<string> { ".png", ".jpg" };
+                var imageExtensions = new List<string> { ".png", ".jpg" , ".jpeg"};
                 var documentExtensions = new List<string> { ".pdf", ".docx", ".txt" };
 
                 string folderName = imageExtensions.Contains(extension) ? imageFolder :
