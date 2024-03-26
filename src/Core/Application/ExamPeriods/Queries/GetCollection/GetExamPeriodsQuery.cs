@@ -17,5 +17,6 @@ namespace PastExamsHub.Core.Application.ExamPeriods.Queries.GetCollection
 
         [OpenApiExclude]
         public string UserUid { get; set; }
+        public ExamPeriodFilter Filter { get; set; }
     }
 }

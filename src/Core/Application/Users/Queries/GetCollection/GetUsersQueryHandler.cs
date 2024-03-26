@@ -39,6 +39,7 @@ namespace PastExamsHub.Core.Application.Common.Users.Queries.GetCollection
             var query =  (
                 from u in QueryBuilder.GetQuery(request.SearchText)
                 where u.Role == RoleType.Student
+                && ( request.Filter==null || u.StudyYear == request.Filter.StudyYear)
                 select new UserModel
                 {
                     Uid = u.Uid,

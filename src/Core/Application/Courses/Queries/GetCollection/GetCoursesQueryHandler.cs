@@ -6,9 +6,11 @@ using PastExamsHub.Core.Application.Common.Interfaces;
 using PastExamsHub.Core.Application.Common.Users.Models;
 using PastExamsHub.Core.Application.Courses.Models;
 using PastExamsHub.Core.Domain.Entities;
+using PastExamsHub.Core.Domain.Enums;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using static OneOf.Types.TrueFalseOrNull;
 
 namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
 {
@@ -40,7 +42,10 @@ namespace PastExamsHub.Core.Application.Courses.Queries.GetCollection
                 join o in DbContext.Users on c.CreatedBy.Id equals o.Id
                 join u in DbContext.Users on c.Lecturer.Id equals u.Id into u_join     
                 from _u in u_join.DefaultIfEmpty()
-                where (request.StudyYear== null || c.StudyYear == request.StudyYear) &&
+                where 
+                (request.StudyYear== null || c.StudyYear == request.StudyYear) &&
+                (request.Filter== null || request.Filter.TeacherUid == null ||_u.Uid == request.Filter.TeacherUid) &&
+                (request.Filter == null || request.Filter.Type == CourseType.Unknown || c.CourseType == request.Filter.Type) &&
                 c.IsSoftDeleted ==false
                 select new CourseModel
                 {
